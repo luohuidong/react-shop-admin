@@ -1,50 +1,23 @@
 import React from 'react'
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 
-import SiderMenu from './sider_menu'
-const { Header, Content, Footer, Sider } = Layout;
+import Sider from './sider/index.js'
+import Header from './header/index.js'
+import Content from './content/index.js'
+import Footer from './footer/index.js'
 
 class PageLayout extends React.Component {
-  state = {
-    collapsed: false,
-  };
-
-  onCollapse = (collapsed) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  }
-
   render() {
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
-        >
-          <div style={{
-            height: '32px',
-            background: 'rgba(255,255,255,.2)',
-            margin: '16px',
-          }}/>
+        <Sider />
 
-          <SiderMenu />
-        </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              {this.props.children}
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer>
+          <Header />
+          <Content>{this.props.children}</Content>
+          <Footer />
         </Layout>
+
       </Layout>
     );
   }
