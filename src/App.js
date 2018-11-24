@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import 'antd/dist/antd.css'
 
+import Login from 'page/login/'
 import Layout from 'component/layout/'
 import Home from 'page/home/'
 
@@ -11,12 +12,18 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Layout>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Redirect from="*" to="/" />
-            </Switch>
-          </Layout>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/" render={props => (
+                <Layout>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Redirect from="*" to="/" />
+                  </Switch>
+                </Layout>
+              )}
+            />
+          </Switch>
         </Router>
       </div>
     );

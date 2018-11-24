@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Dropdown, Icon, Avatar } from 'antd';
+import { Menu, Dropdown, Avatar } from 'antd';
 
 class ComponentName extends React.PureComponent {
   render () {
