@@ -1,7 +1,7 @@
-import React from 'react'
-import { Layout } from 'antd'
+import React from 'react';
+import { Layout } from 'antd';
 
-import Dropdown from './dropdown.js'
+import Dropdown from './dropdown.js';
 
 class Header extends React.PureComponent {
   render () {
@@ -11,12 +11,12 @@ class Header extends React.PureComponent {
           <Dropdown />
         </div>
       </Layout.Header>
-    )
+    );
   }
 }
 
 Header.propTypes = {
 
-}
+};
 
-export default Header
+export default Header;

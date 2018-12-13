@@ -1,7 +1,7 @@
-import React from 'react'
-import { Layout } from 'antd'
+import React from 'react';
+import { Layout } from 'antd';
 
-import SiderMenu from './sider_menu.js'
+import SiderMenu from './sider_menu.js';
 
 class Sider extends React.Component {
   state = {
@@ -27,8 +27,8 @@ class Sider extends React.Component {
 
         <SiderMenu />
       </Layout.Sider>
-    )
+    );
   }
 }
 
-export default Sider
+export default Sider;

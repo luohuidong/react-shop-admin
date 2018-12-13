@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 
-import Sider from './sider/index.js'
-import Header from './header/index.js'
-import Content from './content/index.js'
-import Footer from './footer/index.js'
+import Sider from './sider/index.js';
+import Header from './header/index.js';
+import Content from './content/index.js';
+import Footer from './footer/index.js';
 
 class PageLayout extends React.Component {
   render() {
@@ -23,4 +24,8 @@ class PageLayout extends React.Component {
   }
 }
 
-export default PageLayout
+PageLayout.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default PageLayout;

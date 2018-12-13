@@ -1,6 +1,6 @@
-import React from 'react'
-import { Menu, Icon } from 'antd'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Menu, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 
 const SubMenu = Menu.SubMenu;
 
@@ -43,8 +43,8 @@ class SiderMenu extends React.Component {
         </SubMenu>
 
       </Menu>
-    )
+    );
   }
 }
 
-export default SiderMenu
+export default SiderMenu;

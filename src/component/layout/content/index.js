@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Layout, Breadcrumb } from 'antd';
 
 class Content extends React.PureComponent {
@@ -14,12 +14,12 @@ class Content extends React.PureComponent {
           {this.props.children}
         </div>
       </Layout.Content>
-    )
+    );
   }
 }
 
 Content.propTypes = {
   children: PropTypes.element
-}
+};
 
-export default Content
+export default Content;

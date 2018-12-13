@@ -1,8 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-const FormItem = Form.Item
+import { User } from 'service/user-service.js';
+
+const FormItem = Form.Item;
+const user = new User();
 
 class ComponentName extends React.PureComponent {
   state = {
@@ -13,11 +16,15 @@ class ComponentName extends React.PureComponent {
     
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        const { userName, password } = values;
+        /* eslint-disable */
+        user.login({ userName, password })
+          .then((data, message) => console.log('data', data))
+          .catch(message => console.log('message', message))
       }
     });
   }
@@ -27,6 +34,7 @@ class ComponentName extends React.PureComponent {
 
     return (
       <Form onSubmit={this.handleSubmit} style={{ maxWidth: '300px' }}>
+
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }],
@@ -58,6 +66,7 @@ class ComponentName extends React.PureComponent {
           })(<Checkbox>Remember me</Checkbox>)}
 
           <a style={{ float: 'right' }} href="">Forgot password</a>
+
           <Button 
             type="primary" 
             htmlType="submit" 
@@ -68,12 +77,12 @@ class ComponentName extends React.PureComponent {
           Or <a href="">register now!</a>
         </FormItem>
       </Form>
-    )
+    );
   }
 }
 
 ComponentName.propTypes = {
-  
-}
+  form: PropTypes.object.isRequired
+};
 
-export default Form.create()(ComponentName)
+export default Form.create()(ComponentName);

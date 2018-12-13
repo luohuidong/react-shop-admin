@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Menu, Dropdown, Avatar } from 'antd';
 
 class ComponentName extends React.PureComponent {
@@ -27,12 +27,12 @@ class ComponentName extends React.PureComponent {
           Hover me
         </div>
       </Dropdown>
-    )
+    );
   }
 }
 
 ComponentName.propTypes = {
 
-}
+};
 
-export default ComponentName
+export default ComponentName;

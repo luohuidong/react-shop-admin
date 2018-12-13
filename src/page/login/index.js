@@ -1,6 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Form from './form'
+import React from 'react';
+import Form from './form.js';
 
 class LoginPage extends React.PureComponent {
   render () {
@@ -9,18 +8,18 @@ class LoginPage extends React.PureComponent {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-    }
+    };
 
     return (
       <div style={containerStyle}>
         <Form />
       </div>
-    )
+    );
   }
 }
 
 LoginPage.propTypes = {
   
-}
+};
 
-export default LoginPage
+export default LoginPage;
