@@ -1,30 +1,39 @@
+// 登录表单组件
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import { User } from 'service/user-service.js';
+import User from 'service/user-service.js';
+import MUtil from '../../util';
 
 const FormItem = Form.Item;
 const user = new User();
+const _mm = new MUtil();
 
 class ComponentName extends React.PureComponent {
   state = {
-
+    redirect: _mm.getUrlParam('redirect') || '/'
   }
 
-  userNameChange = () => {
-    
+  loginSuccess = (data) => {
+    /* eslint-disable */
+    localStorage.setItem('userInfo', JSON.stringify(data))
+    this.props.history.push(this.state.redirect);
+  }
+
+  loginFail = (errMessage) => {
+    _mm.errorTips(errMessage);
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
+
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const { userName, password } = values;
-        /* eslint-disable */
         user.login({ userName, password })
-          .then((data, message) => console.log('data', data))
-          .catch(message => console.log('message', message))
+          .then((data, message) => this.loginSuccess(data, message), 
+            message => this.loginFail(message));
       }
     });
   }
@@ -82,7 +91,8 @@ class ComponentName extends React.PureComponent {
 }
 
 ComponentName.propTypes = {
-  form: PropTypes.object.isRequired
+  form: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default Form.create()(ComponentName);

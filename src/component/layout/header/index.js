@@ -5,9 +5,16 @@ import Dropdown from './dropdown.js';
 
 class Header extends React.PureComponent {
   render () {
+    const divStyle = { 
+      width: '100%', 
+      display: 'flex', 
+      justifyContent: 'flex-end', 
+      paddingRight: 30 
+    };
+
     return (
       <Layout.Header style={{ background: '#fff', padding: 0 }}>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', paddingRight: 30 }}>
+        <div style={divStyle}>
           <Dropdown />
         </div>
       </Layout.Header>

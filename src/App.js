@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
-import 'antd/dist/antd.css';
-
-import Login from 'page/login/';
-import Layout from 'component/layout/';
-import Home from 'page/home/';
+import Login from 'page/login/index.js';
+import Layout from 'component/layout/index.js';
+import Home from 'page/home/index.js';
 
 class LayoutWrapper extends React.PureComponent {
   render() {
@@ -13,6 +11,7 @@ class LayoutWrapper extends React.PureComponent {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/product" component={Login} />
           <Redirect from="*" to="/" />
         </Switch>
       </Layout>
@@ -26,8 +25,7 @@ class App extends Component {
       <div>
         <Router>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/" component={LayoutWrapper} />
+            <Route path="/" exact component={Login} />
           </Switch>
         </Router>
       </div>

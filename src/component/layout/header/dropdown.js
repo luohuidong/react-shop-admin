@@ -2,6 +2,10 @@ import React from 'react';
 import { Menu, Dropdown, Avatar } from 'antd';
 
 class ComponentName extends React.PureComponent {
+  handleLogout = () => {
+    //TODO: 删除本地存储的用户信息
+  }
+
   render () {
     const menu = (
       <Menu>

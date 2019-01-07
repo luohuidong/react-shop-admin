@@ -1,3 +1,4 @@
+// 首页组件
 import React from 'react';
 
 class Home extends React.Component {
@@ -7,7 +8,7 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <div>Home</div>
+        <div>hahas</div>
       </div>
     );
   }

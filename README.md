@@ -1,44 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 电商后台项目
 
-## Available Scripts
+这是一个 React、Redux、React Router、Ant Design 电商后台项目。
 
-In the project directory, you can run:
+## 电商后台模块
 
-### `npm start`
+- [] 登录
+- [] 用户列表
+- [] 商品
+  - [] 商品列表
+  - [] 商品页面
+  - [] 添加商品
+  - [] 编辑商品
+  - [] 商品详情
+- [] 品类
+- [] 订单
+  - [] 订单详情模块
+  - [] 订单列表
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 项目初始化
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+出于学习的目的，项目并没有使用 `create-react-app` 命令初始化，因此所有东西都是从零开始配置的。以下记录项目所使用的 packages。
 
-### `npm test`
+- 使用 React 开发的，packages 中肯定少不了 React 全家桶：
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - [React](https://reactjs.org/)
+  - [React Dom](https://www.npmjs.com/package/react-dom)
+  - [Redux](https://redux.js.org/)
+  - [React Redux](https://react-redux.js.org/)
+  - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 
-### `npm run build`
+- UI 使用的是由蚂蚁金服开源的 Ant Design：
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - [Ant Design of React](https://ant.design/docs/react/introduce-cn)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- 项目中使用了与 jQuery 相关的编辑器，所以项目中引入了 jQuery：
+  - [jQuery](https://www.npmjs.com/package/jquery)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 为了确保项目的 coding styles 统一，因此配置了 `.editorconfig` 文件：
 
-### `npm run eject`
+  - [editorconfig](https://editorconfig.org/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 项目使用 ESlint 作为代码检测工具
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - [ESlint](https://eslint.org/docs/user-guide/getting-started)
+  - [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)：让 ESlint 识别 React 语法。
+  - [babel-eslint](https://github.com/babel/babel-eslint)：让 ESlint 识别最新的 ES 语法。
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- 项目使用 webpack 打包：
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  使用 webpack 最基础的两个 packages：
 
-## Learn More
+  - [webpack](https://webpack.js.org/)
+  - webpack-cli
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  另外三个 packages 也是少不了的了：
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md)：自动帮我们生成 index.html 文件，并且在代码中自动帮我们加入所有的资源。
+  - [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)：每次打包之前，都会清空一下老的打包文件。
+  - webpack-dev-server：提供一个简单的服务器，而且代码有修改之后，还会自动刷新。
+
+  使用下面的 package 能提取生产环境和开发环境相同的 webpack 配置，减少 webpack 配置代码的重复。
+
+  - webpack-merge
+  
+  webpack 处理样式使用的 packages：
+
+  - css-loader
+  - style-loader
+  - sass-loader
+  - node-sass
+
+  由于项目中会用到一些新的 ESMAScript 特性以及 JSX ，需要用到 babel 来处理，因此会用到下面的 packages。
+  
+  - [babel-loader](https://webpack.js.org/loaders/babel-loader/)
+  - [@babel/core](https://babeljs.io/docs/en/babel-core)
+  - [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)
+  - [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react)
+  - [@babel/plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
+  - [@babel/plugin-transform-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions)

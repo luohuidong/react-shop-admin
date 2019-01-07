@@ -1,6 +1,9 @@
-import { request } from 'util';
+import MUtil from 'util';
+
+const { request } = new MUtil();
 
 class User {
+  // 用户登录
   login(loginInfo) {
     const param = {
       type: 'post',
@@ -12,6 +15,13 @@ class User {
     };
     return request(param);
   }
+
+  logout() {
+    return request({
+      type: 'post',
+      url: '/user/logout.do'
+    });
+  }
 }
 
-export { User };
+export default User;
