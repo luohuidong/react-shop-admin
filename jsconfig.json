@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "baseUrl": ".",
+    "paths": {
+      "component/*": ["./src/component/*"],
+      "page/*": ["./src/page/*"],
+      "util/*": ["./src/util/*"],
+      "service/*": ["../src/service/*"],
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
