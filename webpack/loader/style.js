@@ -1,6 +1,11 @@
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+const scssRegex = /\.scss$/;
+
+
 const cssLoader = {
-  test: /\.css$/,
-  exclude: /\.module.css$/,
+  test: cssRegex,
+  exclude: cssModuleRegex,
   use: [
     'style-loader',
     'css-loader'
@@ -8,7 +13,7 @@ const cssLoader = {
 };
 
 const cssModuleLoader = {
-  test: /\.module.css$/,
+  test: cssModuleRegex,
   use: [
     'style-loader',
     {
@@ -21,7 +26,7 @@ const cssModuleLoader = {
 };
 
 const sassLoader = {
-  test: /\.scss$/,
+  test: scssRegex,
   use: [
     'style-loader', // creates style nodes from JS strings
     'css-loader', // translates CSS into CommonJS
