@@ -29,16 +29,11 @@
   - [React Redux](https://react-redux.js.org/)
   - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 
-- UI 使用的是由蚂蚁金服开源的 Ant Design：
+- UI 使用的是由蚂蚁金服开源的 [Ant Design](https://ant.design/docs/react/introduce-cn)
 
-  - [Ant Design of React](https://ant.design/docs/react/introduce-cn)
+- HTTP 请求使用的是 [Axios](https://github.com/axios/axios)
 
-- 项目中使用了与 jQuery 相关的编辑器，所以项目中引入了 jQuery：
-  - [jQuery](https://www.npmjs.com/package/jquery)
-
-- 为了确保项目的 coding styles 统一，因此配置了 `.editorconfig` 文件：
-
-  - [editorconfig](https://editorconfig.org/)
+- 为了确保项目的 coding styles 统一，因此使用了 [editorconfig](https://editorconfig.org/)
 
 - 项目使用 ESlint 作为代码检测工具
 
@@ -78,3 +73,4 @@
   - [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react)
   - [@babel/plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
   - [@babel/plugin-transform-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions)
+  - [@babel/plugin-transform-async-to-generator](https://babeljs.io/docs/en/babel-plugin-transform-async-to-generator)
