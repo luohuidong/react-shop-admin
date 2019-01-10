@@ -5,6 +5,17 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './build'
-  }
+    contentBase: './build',
+    port: 3000,
+    proxy: {
+      '/manage': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true
+      },
+      '/user': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true
+      }
+    }
+  },
 });
