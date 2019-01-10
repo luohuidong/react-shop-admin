@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import Login from 'page/login/index.js';
 import Layout from 'component/layout/index.js';
 import Home from 'page/home/index.js';
+
+import { getUserDataStorage } from 'util/storege';
 
 class LayoutWrapper extends React.PureComponent {
   render() {
@@ -20,17 +23,36 @@ class LayoutWrapper extends React.PureComponent {
 }
 
 class App extends Component {
+  componentDidMount() {
+    this.checkUserData();
+  }
+
+  handleRender() {
+    const loggedIn = getUserDataStorage();
+    return !loggedIn ? <Login /> : <LayoutWrapper />;
+  }
+
+  checkUserData() {
+    const userData = getUserDataStorage();
+    if (userData) {
+      this.props.doLogin(userData);
+    }
+  }
+
   render() {
+
     return (
       <div>
         <Router>
-          <Switch>
-            <Route path="/" exact component={Login} />
-          </Switch>
+          <Route path="/" exact render={this.handleRender} />
         </Router>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  doLogin: PropTypes.func.isRequired,
+};
 
 export default App;

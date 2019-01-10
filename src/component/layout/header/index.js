@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 
-import Dropdown from './dropdown.js';
+import Dropdown from './dropdown';
 
 class Header extends React.PureComponent {
   render () {

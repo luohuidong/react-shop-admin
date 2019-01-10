@@ -23,7 +23,7 @@ function setStorage(key, data) {
  */
 function getStorage(key) {
   const data = window.localStorage.getItem(key);
-
+  
   if (data) {
     return JSON.parse(data);
   } else {
@@ -31,12 +31,34 @@ function getStorage(key) {
   }
 }
 
-function removeStorage(name) {
-  window.localStorage.removeItem(name);
+function removeStorage(key) {
+  window.localStorage.removeItem(key);
+}
+
+/**
+ * 本地存储用户信息
+ * @param {object} data 用户信息
+ */
+function saveUserDataStorage(data) {
+  setStorage('user', data);
+}
+
+/**
+ * 获取本地存储的用户信息
+ */
+function getUserDataStorage() {
+  return getStorage('user');
+}
+
+/**
+ * 移除本地存储的用户信息
+ */
+function removeUserDataStorage() {
+  removeStorage('user');
 }
 
 export {
-  setStorage,
-  getStorage,
-  removeStorage,
+  saveUserDataStorage,
+  getUserDataStorage,
+  removeUserDataStorage,
 };

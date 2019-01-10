@@ -1,31 +1,6 @@
-// 登录页面
-import React from 'react';
-import PropTypes from 'prop-types';
-import Form from './form.js';
+import Container from './view/container.js';
+import Reducer from './reducer.js';
 
-class LoginPage extends React.PureComponent {
-  componentDidMount() {
-    document.title = '登录页面';
-  }
-
-  render () {
-    const containerStyle = {
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    };
-
-    return (
-      <div style={containerStyle}>
-        <Form history={this.props.history} />
-      </div>
-    );
-  }
-}
-
-LoginPage.propTypes = {
-  history: PropTypes.object,
-};
-
-export default LoginPage;
+export { doLogin, doLogOut } from './actions';
+export const reducer  = Reducer;
+export default Container;
