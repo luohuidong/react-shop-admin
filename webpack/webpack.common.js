@@ -6,7 +6,7 @@ const loader = require('./loader/index.js');
 
 module.exports = {
   entry: {
-    app: './src/index.js'
+    app: ['@babel/polyfill', './src/index.js']
   },
   plugins: [
     new CleanWebpackPlugin(['build'], {
