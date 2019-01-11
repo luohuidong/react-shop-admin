@@ -4,7 +4,7 @@
 
 ## 电商后台模块
 
-- [ ] 登录
+- [x] 登录
 - [ ] 用户列表
 - [ ] 商品
   - [ ] 商品列表
@@ -74,3 +74,4 @@
   - [@babel/plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
   - [@babel/plugin-transform-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions)
   - [@babel/plugin-transform-async-to-generator](https://babeljs.io/docs/en/babel-plugin-transform-async-to-generator)
+  - [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)
