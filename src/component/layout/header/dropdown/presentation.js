@@ -43,9 +43,11 @@ class DropdownPresentation extends React.PureComponent {
       <Dropdown overlay={menu}>
         <div>
           <span style={{ marginRight: 10 }}>
-            <Avatar>头像</Avatar>
+            <Avatar 
+              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" 
+            />
           </span>
-          { userData.username ? `你好，${userData.username}！` : '请登录' }
+          { userData.username ? userData.username : '请登录' }
         </div>
       </Dropdown>
     );
