@@ -1,4 +1,4 @@
-import { post } from 'util/request';
+import { get, post } from 'util/request';
 
 /**
  * 用户登录
@@ -37,7 +37,24 @@ function userLogout() {
   });
 }
 
+/**
+ * 获取用户列表
+ */
+function requestUserList() {
+  const url = '/manage/user/list.do';
+  return get(url).then(response => {
+    const { status, data, msg } = response.data;
+    
+    if (status === 0) {
+      return data;
+    } else {
+      return Promise.reject(msg);
+    }
+  });
+}
+
 export {
   requestUserLogin,
-  userLogout
+  userLogout,
+  requestUserList,
 };
