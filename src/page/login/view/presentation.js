@@ -1,7 +1,7 @@
 // 登录页面
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { Form, Icon, Input, Button, message } from 'antd';
 
 import style from './style.module.css';
 import { requestUserLogin } from 'service/user-service.js';
