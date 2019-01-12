@@ -6,8 +6,6 @@ import Login from 'page/login/index.js';
 import Layout from 'component/layout/index.js';
 import Home from 'page/home/index.js';
 
-import { getUserDataStorage } from 'util/storege';
-
 class LayoutWrapper extends React.PureComponent {
   render() {
     return (
@@ -23,24 +21,13 @@ class LayoutWrapper extends React.PureComponent {
 }
 
 class App extends Component {
-  componentDidMount() {
-    this.checkUserData();
-  }
-
-  handleRender() {
-    const loggedIn = getUserDataStorage();
-    return !loggedIn ? <Login /> : <LayoutWrapper />;
-  }
-
-  checkUserData() {
-    const userData = getUserDataStorage();
-    if (userData) {
-      this.props.doLogin(userData);
-    }
+  handleRender = () => {
+    const userData = this.props.userData;
+    const keys = Object.keys(userData);
+    return keys.length === 0 ? <Login /> : <LayoutWrapper />;
   }
 
   render() {
-
     return (
       <div>
         <Router>
@@ -52,7 +39,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  doLogin: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired,
 };
 
 export default App;
