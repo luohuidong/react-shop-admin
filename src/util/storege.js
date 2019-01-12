@@ -8,10 +8,10 @@ function setStorage(key, data) {
 
   if (dataType === 'object') {
     // json 对象处理
-    window.localStorage.setItem(key, JSON.stringify(data));
+    window.sessionStorage.setItem(key, JSON.stringify(data));
   } else if (['number', 'string', 'boolean'].includes(dataType)) {
     // 基础类型
-    window.localStorage.setItem(key, data);
+    window.sessionStorage.setItem(key, data);
   } else {
     alert('该类型不能用于本地存储');
   }
@@ -22,7 +22,7 @@ function setStorage(key, data) {
  * @param {string} key 
  */
 function getStorage(key) {
-  const data = window.localStorage.getItem(key);
+  const data = window.sessionStorage.getItem(key);
   
   if (data) {
     return JSON.parse(data);
@@ -32,7 +32,7 @@ function getStorage(key) {
 }
 
 function removeStorage(key) {
-  window.localStorage.removeItem(key);
+  window.sessionStorage.removeItem(key);
 }
 
 /**
