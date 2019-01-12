@@ -11,15 +11,7 @@ function requestUserLogin(username, password) {
     username,
     password,
   };
-  return post(url, data).then(response => {
-    const { status, data, msg } = response.data;
-
-    if (status === 0) {
-      return data;
-    } else {
-      return Promise.reject(msg);
-    }
-  });
+  return post(url, data);
 }
 
 /**
@@ -27,14 +19,7 @@ function requestUserLogin(username, password) {
  */
 function userLogout() {
   const url = '/user/logout.do';
-  return post(url).then(response => {
-    const { status } = response.data;
-    if (status === 0) {
-      return '退出登录成功';
-    } else {
-      return Promise.reject('推出登录失败');
-    }
-  });
+  return post(url).then(() => '退出成功');
 }
 
 /**
@@ -42,15 +27,7 @@ function userLogout() {
  */
 function requestUserList() {
   const url = '/manage/user/list.do';
-  return get(url).then(response => {
-    const { status, data, msg } = response.data;
-    
-    if (status === 0) {
-      return data;
-    } else {
-      return Promise.reject(msg);
-    }
-  });
+  return get(url);
 }
 
 export {

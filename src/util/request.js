@@ -1,14 +1,45 @@
 import axios from 'axios';
 
+import store from '../store.js';
+import { doLogOut } from '../page/login/actions';
+
+const request = (config) => {
+  const { method, url, data, params } = config;
+
+  const axioConfig = {
+    method,
+    url,
+    data,
+    params,
+    timeout: 1000,
+    baseURL: 'http://admintest.happymmall.com',
+  };
+
+  return axios(axioConfig).then(response => {
+    const { status, data, msg } = response.data;
+
+    if (status === 0) {
+      return data;
+    } else if (status === 10) {
+      // status 为 10 的时候，表示用户未登录。
+      store.dispatch(doLogOut());
+      return Promise.reject(msg);
+    } else {
+      return Promise.reject(msg);
+    }
+  });
+};
+
 /**
  * get 请求
  * @param {string} url 
  * @param {object} params 查询参数
  */
 const get = (url, params) => {
-  return axios.get(url, {
+  return request({
+    method: 'GET',
+    url,
     params,
-    timeout: 1000,
   });
 };
 
@@ -33,8 +64,10 @@ const createFormData = data => {
  * @param {object} data 数据
  */
 const post = (url, data) => {
-  return axios.post(url, createFormData(data), {
-    timeout: 1000,
+  return request({
+    method: 'POST',
+    url,
+    data: createFormData(data),
   });
 };
 
