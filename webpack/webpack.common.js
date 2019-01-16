@@ -18,7 +18,7 @@ module.exports = {
     })
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[hash].bundle.js',
     path: path.resolve(__dirname, '../build')
   },
   module: {
@@ -32,9 +32,4 @@ module.exports = {
       'service': path.resolve(__dirname, '../src/service/'),
     }
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
-  }
 };
