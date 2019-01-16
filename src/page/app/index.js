@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
 import Presentation from './presentation';
 
@@ -5,4 +6,6 @@ const mapStateToProps = state => ({
   userData: state.login.data,
 });
 
-export default connect(mapStateToProps)(Presentation);
+const App = connect(mapStateToProps)(Presentation);
+
+export default hot(App);

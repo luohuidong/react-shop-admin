@@ -31,5 +31,10 @@ module.exports = {
       'util': path.resolve(__dirname, '../src/util/'),
       'service': path.resolve(__dirname, '../src/service/'),
     }
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   }
 };
