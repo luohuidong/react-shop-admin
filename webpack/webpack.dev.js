@@ -7,5 +7,15 @@ module.exports = merge(common, {
   devServer: {
     contentBase: './build',
     port: 3000,
+    proxy: {
+      '/manage': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true
+      },
+      '/user': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true
+      }
+    }
   },
 });
