@@ -12,7 +12,6 @@ const request = (config) => {
     data,
     params,
     timeout: 1000,
-    baseURL: 'http://admintest.happymmall.com',
   };
 
   return axios(axioConfig).then(response => {
