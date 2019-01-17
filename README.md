@@ -25,9 +25,10 @@
 
   - [React](https://reactjs.org/)
   - [React Dom](https://www.npmjs.com/package/react-dom)
-  - [Redux](https://redux.js.org/)
-  - [React Redux](https://react-redux.js.org/)
-  - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+  - [Redux](https://redux.js.org/)：React 应用数据管理。
+  - [React Redux](https://react-redux.js.org/)：让 Redux 在 React 上使用更方便。
+  - [React Thunk](https://github.com/reduxjs/redux-thunk)：异步 Actions 解决方案。
+  - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)：实现 React 应用路由。
 
 - UI 使用的是由蚂蚁金服开源的 [Ant Design](https://ant.design/docs/react/introduce-cn)
 
@@ -75,3 +76,5 @@
   - [@babel/plugin-transform-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions)
   - [@babel/plugin-transform-async-to-generator](https://babeljs.io/docs/en/babel-plugin-transform-async-to-generator)
   - [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)
+
+  项目中使用了 [React Hot Loader](https://github.com/gaearon/react-hot-loader) 来配置热加载
