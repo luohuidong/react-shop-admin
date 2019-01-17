@@ -7,6 +7,7 @@ module.exports = merge(common, {
   devServer: {
     contentBase: './build',
     port: 3000,
+    historyApiFallback: true,
     proxy: {
       '/manage': {
         target: 'http://admintest.happymmall.com',
