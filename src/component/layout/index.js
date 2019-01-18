@@ -8,7 +8,7 @@ import Header from './header/index.js';
 import Content from './content/index.js';
 import Footer from './footer/index.js';
 
-class PageLayout extends React.Component {
+class PageLayout extends React.PureComponent {
   render() {
     return (
       <Layout style={{ minHeight: '100vh' }}>

@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 
 import SiderMenu from './sider_menu.js';
 
-class Sider extends React.Component {
+class Sider extends React.PureComponent {
   state = {
     collapsed: false,
   };

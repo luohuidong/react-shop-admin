@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Dropdown, Avatar, message } from 'antd';
+
 import { removeUserDataStorage } from 'util/storege';
 import { userLogout } from 'service/user-service.js';
 

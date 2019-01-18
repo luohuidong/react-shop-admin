@@ -1,4 +1,4 @@
-import { get, post } from 'util/request';
+import { get } from 'util/request';
 
 function requestOrderList() {
   const url = '/manage/order/list.do';
