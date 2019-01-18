@@ -1,17 +1,5 @@
-// 首页组件
-import React from 'react';
+import Container from './view/container';
+import Reducer from './reducer';
 
-class Home extends React.Component {
-  componentDidMount () {
-    document.title = '首页';
-  }
-  render () {
-    return (
-      <div>
-        <div>首页</div>
-      </div>
-    );
-  }
-}
-
-export default Home;
+export const reducer = Reducer;
+export default Container;

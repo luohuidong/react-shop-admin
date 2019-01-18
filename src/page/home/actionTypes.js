@@ -1,0 +1,5 @@
+const GET_STATISTIC = 'HOME_GET_STATISTIC';
+
+export {
+  GET_STATISTIC
+};
