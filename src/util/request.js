@@ -8,7 +8,7 @@ const request = (config) => {
 
   const axioConfig = {
     method,
-    url,
+    url: `/api${url}`,
     data,
     params,
     timeout: 1000,
