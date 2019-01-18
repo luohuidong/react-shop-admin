@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import { doLogOut } from 'page/login/index.js';
 import Presentation from './presentation';
 
@@ -10,4 +12,4 @@ const mapDispatchToProps = {
   doLogOut
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Presentation);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Presentation));
