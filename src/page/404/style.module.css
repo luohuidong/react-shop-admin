@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+
+.errorImage {
+  background-image: url('https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg')
+}
