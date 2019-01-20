@@ -25,9 +25,9 @@ function userLogout() {
 /**
  * 获取用户列表
  */
-function requestUserList() {
+function requestUserList(pageSize, pageNum) {
   const url = '/manage/user/list.do';
-  return get(url);
+  return get(url, { pageSize, pageNum });
 }
 
 export {
