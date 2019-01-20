@@ -1,0 +1,5 @@
+const GET_USER_LIST_DATA = 'GET_USER_LIST_DATA';
+
+export {
+  GET_USER_LIST_DATA
+};
