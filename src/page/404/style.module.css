@@ -1,7 +1,26 @@
 .container {
   display: flex;
+  align-items: center;
+  height: 80%;
+  min-height: 500px;
 }
 
 .errorImage {
-  background-image: url('https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg')
+  flex: 3;
+  display: flex;
+  justify-content: flex-end;
+  height: 360px;
+  padding-right: 150px;
+}
+
+.content {
+  flex: 2;
+}
+.title {
+  font-size: 72px;
+  color: #434e59;
+}
+.text {
+  font-size: 20px;
+  color: rgba(0,0,0, 0.45),
 }

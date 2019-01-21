@@ -10,13 +10,16 @@ class ErrorPage extends React.PureComponent {
   }
   render () {
     return (
-      <div>
-        <div className={styles.container}>
-          <div className={styles.errorImage} />
+      <div className={styles.container}>
+        <div className={styles.errorImage}>
+          <img 
+            src="https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg" 
+            alt="errImage"
+          />
         </div>
-        <div>
-          <h1>404</h1>
-          <div>抱歉，你访问的页面不存在</div>
+        <div className={styles.content}>
+          <h1 className={styles.title}>404</h1>
+          <p className={styles.text}>抱歉，你访问的页面不存在</p>
           <div>
             <Link to='/'>
               <Button type="primary">返回首页</Button>
