@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Divider } from 'antd';
+import { Table } from 'antd';
 
 class UserList extends React.Component {
   componentDidMount() {
@@ -31,12 +31,6 @@ class UserList extends React.Component {
     }, {
       title: 'Action',
       key: 'action',
-      render: (text, record) => (
-        <span>
-          <Divider type="vertical" />
-          <a href="javascript:;">Delete</a>
-        </span>
-      ),
     }];
 
     const tableProps = {
