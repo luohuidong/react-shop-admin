@@ -7,7 +7,7 @@ import store from './store.js';
 
 import 'antd/dist/antd.css';
 import './index.css';
-import App from 'page/app/index.js';
+import App from './app.js';
 
 ReactDOM.render(
   <BrowserRouter>

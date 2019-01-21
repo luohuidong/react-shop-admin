@@ -11,7 +11,7 @@ const request = (config) => {
     url: `/api${url}`,
     data,
     params,
-    timeout: 1000,
+    timeout: 2000,
   };
 
   return axios(axioConfig).then(response => {
