@@ -13,7 +13,8 @@ class ProductSearchForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const { productName } = values;
-        this.props.searchProduct(productName);
+        const { pageSize, pageNum } = this.props;
+        this.props.getProductList('search', pageSize, pageNum, productName);
       }
     });
   }
@@ -46,9 +47,6 @@ class ProductSearchForm extends React.Component {
             </Button>
           </Col>
         </Row>
-
-        <Row>
-        </Row>
       </Form>
     );
   }
@@ -56,7 +54,9 @@ class ProductSearchForm extends React.Component {
 
 ProductSearchForm.propTypes = {
   form: PropTypes.object.isRequired,
-  searchProduct: PropTypes.func.isRequired
+  getProductList: PropTypes.func.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  pageNum: PropTypes.number.isRequired
 };
 
 export default Form.create()(ProductSearchForm);

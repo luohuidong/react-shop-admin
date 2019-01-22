@@ -8,7 +8,7 @@ import SearchForm from './search-form';
 class ProductList extends React.Component {
   componentDidMount() {
     document.title = '商品列表';
-    this.props.getProductList(10, 1);
+    this.props.getProductList('list', 10, 1);
   }
 
   /**
@@ -16,7 +16,7 @@ class ProductList extends React.Component {
    * @param record 商品信息
    */
   handleSetProductStatus = (record) => {
-    const { pageSize, pageNumber } = this.props.productList;
+    const { pageSize, pageNum } = this.props.productList;
     const { id, status } = record;
     let newStatus = 0;
     if (status === 1) {
@@ -24,11 +24,13 @@ class ProductList extends React.Component {
     } else {
       newStatus = 1;
     }
-    this.props.setProductSaleStatus(id, newStatus, pageSize, pageNumber);
+    this.props.setProductSaleStatus(id, newStatus, pageSize, pageNum);
   }
 
   render() {
-    const { productListData, pageSize, pageNumber, total } = this.props.productList;
+    const { 
+      listType, productListData, pageSize, pageNum, total, productName 
+    } = this.props.productList;
 
     const productStyle = {
       display: 'flex',
@@ -86,15 +88,19 @@ class ProductList extends React.Component {
       rowKey: 'id',
       pagination: {
         pageSize,
-        current: pageNumber,
+        current: pageNum,
         total,
-        onChange: (page, pageSize) => this.props.getProductList(pageSize, page)
+        onChange: (page, pageSize) => this.props.getProductList(listType, pageSize, page, productName)
       }
     };
 
     return (
       <div style={{ padding: 50, backgroundColor: 'white' }}>
-        <SearchForm searchProduct={this.props.searchProduct} />
+        <SearchForm 
+          getProductList={this.props.getProductList} 
+          pageSize={pageSize} 
+          pageNum={pageNum}
+        />
         <Table {...tableProps} />
       </div>
     );
@@ -105,7 +111,6 @@ ProductList.propTypes = {
   productList: PropTypes.object.isRequired,
   getProductList: PropTypes.func.isRequired,
   setProductSaleStatus: PropTypes.func.isRequired,
-  searchProduct: PropTypes.func.isRequired
 };
 
 export default ProductList; 

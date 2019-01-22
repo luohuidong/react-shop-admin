@@ -3,26 +3,33 @@ import { message } from 'antd';
 import { 
   requestProductList, 
   requestSetProductSaleStatus, 
-  requestSearchProduct 
 } from 'service/product';
-import { GET_PRODUCT_LIST_DATA, SEARCH_PRODUCT_LIST_DATA } from './actionTypes';
+import { GET_PRODUCT_LIST_DATA } from './actionTypes';
 
 /**
- * 获取商品列表数据
+ * 
+ * @param {string} listType list 表示获取普通列表数据，search 表示获取搜索商品关键字的列表数据
  * @param {number} pageSize 
- * @param {number} pageNumber 
+ * @param {number} pageNum 
+ * @param {string} productName 
  */
-const getProductList = (pageSize, pageNumber) => {
+const getProductList = (listType, pageSize, pageNum, productName) => {
   return async dispatch => {
     try {
-      const { list, total } = await requestProductList(pageNumber, pageSize);
+      const { list, total } = await requestProductList(listType, {
+        pageSize,
+        pageNum,
+        productName
+      });
 			
       dispatch({
         type: GET_PRODUCT_LIST_DATA,
         payload: {
-          productListData: list,
+          listType,
           pageSize,
-          pageNumber,
+          pageNum,
+          productName,
+          productListData: list,
           total
         }
       });
@@ -37,41 +44,14 @@ const getProductList = (pageSize, pageNumber) => {
  * @param {string} productId 
  * @param {string} productStatus 商品目标上架状态
  * @param {number} pageSize 
- * @param {number} pageNumber 
+ * @param {number} pageNum 
  */
-const setProductSaleStatus = (productId, productStatus, pageSize, pageNumber) => {
+const setProductSaleStatus = (productId, productStatus, pageSize, pageNum) => {
   return async dispatch => {
     try {
       const result = await requestSetProductSaleStatus(productId, productStatus);
       message.success(result);
-      dispatch(getProductList(pageSize, pageNumber));
-    } catch (error) {
-      message.error(error);
-    }
-  };
-};
-
-/**
- * 通过商品名字和 id 搜索商品
- * @param {string} productName 
- * @param {string} productId 
- */
-const searchProduct = (productName, productId) => {
-  return async dispatch => {
-    try {
-      const result = await requestSearchProduct(productName, productId);
-			console.log("​searchProduct -> result", result)
-      const { list, total } = result;
-
-      dispatch({
-        type: SEARCH_PRODUCT_LIST_DATA,
-        payload: {
-          productListData: list,
-          pageSize: 10,
-          pageNumber: 1,
-          total
-        }
-      });
+      dispatch(getProductList(pageSize, pageNum));
     } catch (error) {
       message.error(error);
     }
@@ -81,5 +61,4 @@ const searchProduct = (productName, productId) => {
 export {
   getProductList,
   setProductSaleStatus,
-  searchProduct
 };
