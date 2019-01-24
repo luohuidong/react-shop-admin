@@ -12,7 +12,8 @@ class ProductSearchForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        const { productName } = values;
+        let { productName } = values;
+        if (!productName) productName = undefined;
         const { pageSize, pageNum } = this.props;
         this.props.getProductList('search', pageSize, pageNum, productName);
       }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Table, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
+import { productRoute } from 'util/route';
 import SearchForm from './search-form'; 
 
 class ProductList extends React.Component {
@@ -75,9 +76,9 @@ class ProductList extends React.Component {
       width: 150,
       render: (text, record) => (
         <span>
-          <Link to={`/product/detail/${record.id}`}>查看详情</Link>
+          <Link to={`${productRoute.detail}/${record.id}`}>查看详情</Link>
           <span> | </span>
-          <Link to={`/product/save/${record.id}`}>编辑</Link>
+          <Link to={`${productRoute.editor}/${record.id}`}>编辑</Link>
         </span>
       )
     }];
@@ -101,6 +102,11 @@ class ProductList extends React.Component {
           pageSize={pageSize} 
           pageNum={pageNum}
         />
+        <div style={{ marginBottom: 30 }}>
+          <Link to={productRoute.editor}>
+            <Button type='primary'>新增</Button>
+          </Link>
+        </div>
         <Table {...tableProps} />
       </div>
     );
