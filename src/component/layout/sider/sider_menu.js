@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import { productRoute, userRoute } from 'util/route';
 
 const SubMenu = Menu.SubMenu;
 
@@ -17,10 +18,10 @@ class SiderMenu extends React.PureComponent {
           title={<span><Icon type="user" /><span>商品</span></span>}
         >
           <Menu.Item key="3">
-            <Link to="/product"><Icon type="pie-chart" />商品管理</Link>
+            <Link to={productRoute.list}><Icon type="pie-chart" />商品管理</Link>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to="/product-category"><Icon type="pie-chart" />品类管理</Link>
+            <Link to={productRoute.category}><Icon type="pie-chart" />品类管理</Link>
           </Menu.Item>
         </SubMenu>
 
@@ -38,7 +39,7 @@ class SiderMenu extends React.PureComponent {
           title={<span><Icon type="team" /><span>用户</span></span>}
         >
           <Menu.Item key="7">
-            <Link to="/user"><Icon type="pie-chart" />用户管理</Link>
+            <Link to={userRoute.list}><Icon type="pie-chart" />用户管理</Link>
           </Menu.Item>
         </SubMenu>
 
