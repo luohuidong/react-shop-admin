@@ -17,9 +17,17 @@ function requestProductList(listType, params) {
   return get(url, params);
 }
 
-function requestUploadImage() {
-  const url = '/manage/product/upload.do';
-  return post(url);
+/**
+ * 变更商品上下架状态
+ * @param {string} productId 商品 id
+ * @param {string} status 状态
+ */
+function requestSetProductSaleStatus(productId, status) {
+  const url = '/manage/product/set_sale_status.do';
+  return post(url, {
+    productId,
+    status
+  });
 }
 
 /**
@@ -34,21 +42,17 @@ function requestProductDetail(productId) {
 }
 
 /**
- * 变更商品上下架状态
- * @param {string} productId 商品 id
- * @param {string} status 状态
+ * 新增商品
+ * @param {object} data 表单数据
  */
-function requestSetProductSaleStatus(productId, status) {
-  const url = '/manage/product/set_sale_status.do';
-  return post(url, {
-    productId,
-    status
-  });
+function requestSaveProduct(data) {
+  const url = '/manage/product/save.do';
+  return post(url, data);
 }
 
 export {
   requestProductList,
-  requestSearchProduct,
+  requestSetProductSaleStatus,
   requestProductDetail,
-  requestSetProductSaleStatus
+  requestSaveProduct
 };

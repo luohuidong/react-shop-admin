@@ -2,13 +2,14 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
+import { getUserDataStorage } from 'util/storege';
 import store from './store.js';
 import Login from 'page/login/index.js';
 import Layout from 'component/layout/index.js';
 import Home from 'page/home/index.js';
 import ErrorPage from 'page/404/index.js';
-import UserList from 'page/user/index';
-import { ProductRouter as Product } from 'page/product/index';
+import { Route as UserRoute } from 'page/user/index';
+import { Route as ProductRoute } from 'page/product/index';
 
 class LayoutWrapper extends React.Component {
   render() {
@@ -16,8 +17,8 @@ class LayoutWrapper extends React.Component {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path='/user' component={UserList} />
-          <Route path='/product' component={Product} />
+          <Route path='/user' component={UserRoute} />
+          <Route path='/product' component={ProductRoute} />
           <Route component={ErrorPage} />
         </Switch>
       </Layout>
@@ -43,7 +44,8 @@ class App extends React.Component {
   }
 
   handleRender = () => {
-    const { userData } = this.state;
+    // const { userData } = this.state;
+    const userData = getUserDataStorage();
     const keys = Object.keys(userData);
     return keys.length === 0 ? <Login /> : <LayoutWrapper />;
   }

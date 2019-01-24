@@ -6,7 +6,7 @@ import { reducer as productReducer } from './product/index';
 const reducer = {
   login: LoginReducer,
   home: HomeReducer,
-  user: userReducer,
+  ...userReducer,
   ...productReducer,
 };
 
