@@ -1,7 +1,7 @@
-import container from './view/container';
 import reducer from './reducer';
+import Route from './route';
 
 export {
-  container as default,
-  reducer
+  reducer,
+  Route
 };

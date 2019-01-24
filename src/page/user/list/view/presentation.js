@@ -9,7 +9,7 @@ class UserList extends React.Component {
   }
 
   render() {
-    const { userListData, pageSize, pageNumber, total } = this.props.user;
+    const { userListData, pageSize, pageNumber, total } = this.props.userListData;
 
     const columns = [{
       title: '账号',
@@ -54,7 +54,7 @@ class UserList extends React.Component {
 }
 
 UserList.propTypes = {
-  user: PropTypes.object.isRequired,
+  userListData: PropTypes.object.isRequired,
   getUserList: PropTypes.func.isRequired,
 };
 

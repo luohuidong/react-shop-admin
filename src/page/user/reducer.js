@@ -1,21 +1,5 @@
-import { GET_USER_LIST_DATA } from './actionTypes';
+import { reducer as userListReducer } from './list/index';
 
-const initState = {
-  userListData: [],
-  pageSize: 0,
-  pageNumber: 0,
+export default {
+  userList: userListReducer
 };
-
-const reducer = (state = initState, action) => {
-  switch (action.type) {
-    case GET_USER_LIST_DATA:
-      return {
-        ...state,
-        ...action.payload
-      };
-    default:
-      return state;
-  }
-};
-
-export default reducer;

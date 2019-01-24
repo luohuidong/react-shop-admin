@@ -5,7 +5,7 @@ import * as actions from '../actions.js';
 import Presentation from './presentation.js';
 
 const mapStateToProps = state => ({
-  user: state.user
+  userListData: state.userList
 });
 
 const mapDispatchToProps = {
