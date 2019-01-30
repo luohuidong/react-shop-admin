@@ -17,7 +17,6 @@ class ProductList extends React.Component {
    * @param record 商品信息
    */
   handleSetProductStatus = (record) => {
-    const { pageSize, pageNum } = this.props.productList;
     const { id, status } = record;
     let newStatus = 0;
     if (status === 1) {
@@ -25,14 +24,15 @@ class ProductList extends React.Component {
     } else {
       newStatus = 1;
     }
-    this.props.setProductSaleStatus(id, newStatus, pageSize, pageNum);
+    this.props.setProductSaleStatus(id, newStatus);
   }
 
   render() {
+    
     const { 
       listType, productListData, pageSize, pageNum, total, productName 
     } = this.props.productList;
-
+    
     const productStyle = {
       display: 'flex',
       justifyContent: 'space-between',

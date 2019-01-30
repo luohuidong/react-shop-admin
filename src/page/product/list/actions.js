@@ -34,7 +34,7 @@ const getProductList = (listType, pageSize, pageNum, productName) => {
         }
       });
     } catch (error) {
-      message.error(error);
+      message.error(error || '查询商品列表出错');
     }
   };
 };
@@ -43,15 +43,16 @@ const getProductList = (listType, pageSize, pageNum, productName) => {
  * 设置商品的上架状态，并获取最新的列表信息
  * @param {string} productId 
  * @param {string} productStatus 商品目标上架状态
- * @param {number} pageSize 
- * @param {number} pageNum 
  */
-const setProductSaleStatus = (productId, productStatus, pageSize, pageNum) => {
-  return async dispatch => {
+const setProductSaleStatus = (productId, productStatus) => {
+  return async (dispatch, getState) => {
+    const productListPageState = getState().productList;
+    const { listType, productName, pageSize, pageNum } = productListPageState;
+
     try {
       const result = await requestSetProductSaleStatus(productId, productStatus);
       message.success(result);
-      dispatch(getProductList(pageSize, pageNum));
+      dispatch(getProductList(listType, pageSize, pageNum, productName));
     } catch (error) {
       message.error(error);
     }

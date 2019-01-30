@@ -10,8 +10,9 @@ class ProductRoute extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path={productRoute.list} component={ProductList} />
-        <Route path={productRoute.editor} component={ProductEditor} />
+        <Route exact path={productRoute.list} component={ProductList} />
+        <Route exact path={productRoute.editor} component={ProductEditor} />
+        <Route path={`${productRoute.editor}/:productId`} component={ProductEditor} />
         <Route component={ErrorPage} />
       </Switch>
     );

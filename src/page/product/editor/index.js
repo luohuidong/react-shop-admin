@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, Button, InputNumber, Switch, message } from 'antd';
 
-import CategoryCascader from './category-cascader';
 import UploadImage from './upload-image';
 import RichTextEditor from './rich-text-editor';
-import { requestSaveProduct } from 'service/product';
+import { requestSaveProduct, requestProductDetail } from 'service/product';
 import { productRoute } from 'util/route';
+import CategorySelect from './category-select';
 
 const formItemLayout = {
   labelCol: { span: 7 },
@@ -20,12 +20,40 @@ const tailFormItemLayout = {
   },
 };
 
-class ProductList extends React.Component {
+class ProductList extends React.PureComponent {
   state = {
+    productData: {},
+    parentCategoryId: 0,
+    categoryId: 0
   };
 
   componentDidMount() {
-    document.title = '新增商品';
+    let title = '';
+    const { params } = this.props.match;
+    if (params && params.productId) {
+      title = '修改商品';
+    } else {
+      title = '新增商品';
+    }
+
+    document.title = title;
+
+    this.initialFormDataByProductId();
+  }
+
+  initialFormDataByProductId = () => {
+    const { params } = this.props.match;
+
+    if (params && params.productId) {
+      requestProductDetail(params.productId).then(data => {
+        console.log('TCL: ProductList -> initialFormDataByProductId -> data', data)
+        this.setState({
+          productData: data
+        });
+      }).catch(error => {
+        message.error(error || '获取商品详情失败');
+      });
+    }
   }
 
   handleSaveProduct = async (values) => {
@@ -43,10 +71,12 @@ class ProductList extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+        const { levelOneCategoryId, levelTwoCategoryId } = values;
+
         const newValues = {
           ...values,
           subImages: values.subImages.join(','),
-          categoryId: values.categoryId[1],
+          categoryId: levelTwoCategoryId ? levelTwoCategoryId : levelOneCategoryId,
           status: values.status === true ? 1 : 2
         };
         this.handleSaveProduct(newValues);
@@ -55,47 +85,51 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { form } = this.props;
+    const { getFieldDecorator } = form;
+    const { productData } = this.state;
 
     return (
       <div style={{ padding: 50, backgroundColor: 'white' }}>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item {...formItemLayout} label="商品名称">
             {getFieldDecorator('name', {
+              initialValue: productData.name,
               rules: [{
-                required: true, message: '此项未必填项',
+                required: true, message: '此项为必填项',
               }],
             })(<Input />)}
           </Form.Item>
 
           <Form.Item {...formItemLayout} label="商品描述" >
             {getFieldDecorator('subtitle', {
+              initialValue: productData.subtitle,
               rules: [{
-                required: true, message: '此项未必填项',
+                required: true, message: '此项为必填项',
               }],
             })(<Input />)}
           </Form.Item>
 
-          <Form.Item {...formItemLayout} label="商品分类" >
-            {getFieldDecorator('categoryId', {
-              rules: [{
-                required: true, message: '此项未必填项',
-              }],
-            })(<CategoryCascader />)}
-          </Form.Item>
+          <CategorySelect
+            formItemLayout={formItemLayout}
+            form={form}
+            productData={productData}
+          />
 
           <Form.Item {...formItemLayout} label="价格" >
             {getFieldDecorator('price', {
+              initialValue: productData.price,
               rules: [{
-                required: true, message: '此项未必填项',
+                required: true, message: '此项为必填项',
               }],
             })(<InputNumber />)}
           </Form.Item>
 
           <Form.Item {...formItemLayout} label="库存" >
             {getFieldDecorator('stock', {
+              initialValue: productData.stock,
               rules: [{
-                required: true, message: '此项未必填项',
+                required: true, message: '此项为必填项',
               }],
             })(<InputNumber />)}
           </Form.Item>
@@ -103,32 +137,32 @@ class ProductList extends React.Component {
           <Form.Item {...formItemLayout} label="上架状态" >
             {getFieldDecorator('status', {
               valuePropName: 'checked',
-              initialValue: true,
+              initialValue: productData.status === 1 ? true : false,
               rules: [{
-                required: true, message: '此项未必填项',
+                required: true, message: '此项为必填项',
               }],
             })(<Switch checkedChildren="上架" unCheckedChildren="下架" />)}
           </Form.Item>
 
-          <Form.Item{...formItemLayout} label="图片上传" >
-            {getFieldDecorator('subImages', {
-              rules: [{
-                required: true, message: '此项未必填项',
-              }],
-            })(<UploadImage />)}
-          </Form.Item>
+          <UploadImage
+            productData={productData}
+            formItemLayout={formItemLayout}
+            form={form}
+          />
 
           <Form.Item{...formItemLayout} label="详情" >
             {getFieldDecorator('detail', {
               rules: [{
-                required: true, message: '此项未必填项',
+                required: true, message: '此项为必填项',
               }],
             })(<RichTextEditor />)}
           </Form.Item>
 
 
           <Form.Item {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">提交</Button>
+            <Button type="primary" htmlType="submit">
+              {!productData.id ? '提交' : '修改'}
+            </Button>
           </Form.Item>
         </Form>
       </div>
@@ -138,7 +172,8 @@ class ProductList extends React.Component {
 
 ProductList.propTypes = {
   form: PropTypes.object.isRequired,
-  history: PropTypes.object
+  history: PropTypes.object,
+  match: PropTypes.object,
 };
 
 export default Form.create()(ProductList); 

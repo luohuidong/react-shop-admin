@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 
-class MyEditor extends React.Component {
+class MyEditor extends React.PureComponent {
   state = {
     editorState: BraftEditor.createEditorState(null)
   }
