@@ -97,20 +97,22 @@ class CategorySelect extends React.PureComponent {
           </Select>)}
         </Form.Item>
 
-        <Form.Item 
-          {...formItemLayout} 
-          label="商品二级分类" 
-          style={{ display: levelTwoCategoryDatas.length === 0 ? 'none' : 'block' }}
-        >
-          {getFieldDecorator('levelTwoCategoryId', {
-            initialValue: parentCategoryId === 0 ? undefined : categoryId,
-            rules: [{
-              required: true, message: '此项为必填项',
-            }],
-          })(<Select placeholder='请选择商品二级分类'>
-            {this.getSelectOptions(levelTwoCategoryDatas)}
-          </Select>)}
-        </Form.Item>
+        {
+          levelTwoCategoryDatas.length !== 0 &&
+          <Form.Item
+            {...formItemLayout}
+            label="商品二级分类"
+          >
+            {getFieldDecorator('levelTwoCategoryId', {
+              initialValue: parentCategoryId === 0 ? undefined : categoryId,
+              rules: [{
+                required: true, message: '此项为必填项',
+              }],
+            })(<Select placeholder='请选择商品二级分类'>
+              {this.getSelectOptions(levelTwoCategoryDatas)}
+            </Select>)}
+          </Form.Item>
+        }
       </div>
     );
   }

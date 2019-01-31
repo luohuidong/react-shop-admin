@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Upload, Icon, Modal, message } from 'antd';
 
-class ImageUpload extends React.PureComponent {
+class ImageUpload extends React.Component {
   state = {
     previewVisible: false,
     previewImage: '',
-    fileList: [],
+    fileList: undefined,
   };
 
   handleCancel = () => this.setState({ previewVisible: false })
@@ -18,44 +18,51 @@ class ImageUpload extends React.PureComponent {
     });
   }
 
-  handleFileListData = fileList => {
-    const imageUri = fileList.map(element => {
-      const { response } = element;
-      if (response && response.data) {
-        return response.data.uri;
-      }
-    });
-    return imageUri;
+  handleChange = info => {
+    const { fileList, file } = info;
+    const { status, name } = file;
+
+    switch (status) {
+      case 'done':
+        message.success(`${name} 上传成功`);
+        break;
+      case 'error':
+        message.error(`${name} 上传失败`);
+        break;
+      case 'removed':
+        message.info(`${name} 删除成功`);
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ fileList });
+    this.saveComponentValue(fileList);
   }
 
-  handleChange = info => {
-    const { status, name } = info.file;
-    if (status === 'done') {
-      const { fileList } = info;
-      this.setState({ fileList });
-
-      const { onChange } = this.props;
-      if (onChange) {
-        onChange(this.handleFileListData(fileList));
+  saveComponentValue = (fileList) => {
+    const newFileList = fileList.map(element => {
+      if (element.response) {
+        const { url, uri } = element.response.data;
+        return {
+          uid: element.uid,
+          name: element.name,
+          status: element.status,
+          url,
+          uri,
+        };
+      } else {
+        return element;
       }
+    });
 
-      message.success(`${name} 上传成功`);
-    } else if (status === 'error') {
-      message.error(`${name} 上传失败.`);
-    } else if (status === 'removed') {
-      message.info(`${name} 删除成功`);
+    if (this.props.onChange) {
+      this.props.onChange(newFileList);
     }
   }
 
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
-
-    const uploadButton = (
-      <div>
-        <Icon type="plus" />
-        <div className="ant-upload-text">Upload</div>
-      </div>
-    );
 
     const uploadProps = {
       accept: 'image/*',
@@ -64,12 +71,16 @@ class ImageUpload extends React.PureComponent {
       onPreview: this.handlePreview,
       onChange: this.handleChange,
       name: 'upload_file',
+      fileList: fileList ? fileList : this.props.value,
     };
 
     return (
       <div className="clearfix">
         <Upload {...uploadProps}>
-          {fileList.length >= 3 ? null : uploadButton}
+          <div>
+            <Icon type="plus" />
+            <div className="ant-upload-text">Upload</div>
+          </div>
         </Upload>
 
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
@@ -82,6 +93,7 @@ class ImageUpload extends React.PureComponent {
 
 ImageUpload.propTypes = {
   onChange: PropTypes.func,
+  value: PropTypes.array,
 };
 
 export default ImageUpload;

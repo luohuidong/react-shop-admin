@@ -41,18 +41,18 @@ class ProductList extends React.PureComponent {
     this.initialFormDataByProductId();
   }
 
-  initialFormDataByProductId = () => {
+  initialFormDataByProductId = async () => {
     const { params } = this.props.match;
 
     if (params && params.productId) {
-      requestProductDetail(params.productId).then(data => {
-        console.log('TCL: ProductList -> initialFormDataByProductId -> data', data)
+      try {
+        const data = await requestProductDetail(params.productId);
         this.setState({
           productData: data
         });
-      }).catch(error => {
+      } catch (error) {
         message.error(error || '获取商品详情失败');
-      });
+      }
     }
   }
 
@@ -60,10 +60,10 @@ class ProductList extends React.PureComponent {
     const { history } = this.props;
     try {
       await requestSaveProduct(values);
-      message.success('新增商品成功');
+      message.success(values.id ? '修改商品成功' : '新增商品成功');
       history.push(productRoute.list);
     } catch (error) {
-      message.error('新增商品失败');
+      message.error(values.id ? '修改商品失败' : '新增商品失败');
     }
   }
 
@@ -75,9 +75,10 @@ class ProductList extends React.PureComponent {
 
         const newValues = {
           ...values,
-          subImages: values.subImages.join(','),
+          subImages: values.subImages.map(element => element.uri).join(','),
           categoryId: levelTwoCategoryId ? levelTwoCategoryId : levelOneCategoryId,
-          status: values.status === true ? 1 : 2
+          status: values.status === true ? 1 : 2,
+          id: this.state.productData.id,
         };
         this.handleSaveProduct(newValues);
       }
@@ -155,7 +156,7 @@ class ProductList extends React.PureComponent {
               rules: [{
                 required: true, message: '此项为必填项',
               }],
-            })(<RichTextEditor />)}
+            })(<RichTextEditor initialValue={productData.detail} />)}
           </Form.Item>
 
 

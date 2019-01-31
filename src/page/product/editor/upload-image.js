@@ -6,7 +6,7 @@ import Upload from 'component/upload/index';
 
 class ImageUpload extends React.PureComponent {
   state = {
-    initialValue: [],
+    fileListData: [],
   }
 
   componentDidUpdate(prevProps) {
@@ -19,16 +19,18 @@ class ImageUpload extends React.PureComponent {
   }
 
   createFileListDate = (imageHost, subImages) => {
-    if (subImages instanceof Array) {
-      const fileList = subImages.split(',').map((element, index) => ({
+    if (typeof subImages === 'string') {
+      subImages = subImages.split(',');
+      const fileList = subImages.map((element, index) => ({
         uid: `-${index}`,
         name: element,
         status: 'done',
-        url: `${imageHost}${subImages}`
+        url: `${imageHost}${element}`,
+        uri: element,
       }));
 
       this.setState({
-        initialValue: fileList
+        fileListData: fileList
       });
     }
   }
@@ -37,11 +39,13 @@ class ImageUpload extends React.PureComponent {
     const { form, formItemLayout } = this.props;
     const { getFieldDecorator } = form;
 
+    const { fileListData } = this.state;
+
     return (
       <div>
         <Form.Item{...formItemLayout} label="图片上传" >
           {getFieldDecorator('subImages', {
-            initialValue: this.state.initialValue,
+            initialValue: fileListData,
             rules: [{
               required: true, message: '此项为必填项',
             }],
