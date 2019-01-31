@@ -91,7 +91,7 @@ class ProductList extends React.PureComponent {
     const { productData } = this.state;
 
     return (
-      <div style={{ padding: 50, backgroundColor: 'white' }}>
+      <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item {...formItemLayout} label="商品名称">
             {getFieldDecorator('name', {

@@ -96,7 +96,7 @@ class ProductList extends React.Component {
     };
 
     return (
-      <div style={{ padding: 50, backgroundColor: 'white' }}>
+      <div>
         <SearchForm 
           getProductList={this.props.getProductList} 
           pageSize={pageSize} 

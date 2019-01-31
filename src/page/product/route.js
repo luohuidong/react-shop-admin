@@ -9,12 +9,15 @@ import ProductEditor from './editor/index.js';
 class ProductRoute extends React.Component {
   render() {
     return (
-      <Switch>
-        <Route exact path={productRoute.list} component={ProductList} />
-        <Route exact path={productRoute.editor} component={ProductEditor} />
-        <Route path={`${productRoute.editor}/:productId`} component={ProductEditor} />
-        <Route component={ErrorPage} />
-      </Switch>
+      <div style={{ padding: 50, backgroundColor: 'white' }}>
+        <Switch>
+          <Route exact path={productRoute.list} component={ProductList} />
+          <Route exact path={productRoute.editor} component={ProductEditor} />
+          <Route path={`${productRoute.editor}/:productId`} component={ProductEditor} />
+          <Route component={ErrorPage} />
+        </Switch>
+
+      </div>
     );
   }
 }
