@@ -5,14 +5,24 @@ import { Layout } from 'antd';
 class Content extends React.Component {
   render () {
     return (
-      <Layout.Content style={{ margin: '16px' }}>
-        <div style={{ padding: 24, minHeight: 360 }}>
+      <Layout.Content style={styles.layoutContent}>
+        <div style={styles.childrenContainer}>
           {this.props.children}
         </div>
       </Layout.Content>
     );
   }
 }
+
+const styles = {
+  layoutContent: {
+    margin: 16
+  },
+  childrenContainer: { 
+    padding: 24, 
+    minHeight: 360 
+  }
+};
 
 Content.propTypes = {
   children: PropTypes.element
