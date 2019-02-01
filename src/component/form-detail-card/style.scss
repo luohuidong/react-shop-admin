@@ -1,0 +1,29 @@
+$color: rgba(0, 0, 0, .85);
+
+.title {
+  font-size: 16px;
+  color: $color;
+  margin-bottom: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: $color;
+  font-size: 14px;
+
+  > div {
+    margin-bottom: 15px;
+
+    > span {
+      &:last-child {
+        color: rgba(0, 0, 0, 0.65);
+      }
+    }
+  }
+}
+
+.divider {
+  margin-top: 20px;
+  border-bottom: 1px solid #e8e8e8;
+}
