@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, Input, Button, InputNumber, Switch, message } from 'antd';
 
 import UploadImage from './upload-image';
-import RichTextEditor from './rich-text-editor';
+import RichTextEditor from 'component/rich-text-editor/index';
 import { requestSaveProduct, requestProductDetail } from 'service/product';
 import { productRoute } from 'util/route';
 import CategorySelect from './category-select';
