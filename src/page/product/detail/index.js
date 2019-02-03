@@ -26,7 +26,6 @@ class ProductDetail extends React.PureComponent {
     if (params && params.productId) {
       try {
         const data = await requestProductDetail(params.productId);
-        console.log('TCL: ProductDetail -> getProductDataById -> data', data)
         this.setState({ productData: data });
 
         if (data.parentCategoryId === 0) {

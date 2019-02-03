@@ -14,8 +14,7 @@ class ProductRoute extends React.Component {
         <div style={{ padding: 50, backgroundColor: 'white' }}>
           <Switch>
             <Route exact path={productRoute.list} component={ProductList} />
-            <Route exact path={productRoute.editor} component={ProductEditor} />
-            <Route path={`${productRoute.editor}/:productId`} component={ProductEditor} />
+            <Route path={`${productRoute.editor}/:productId?`} component={ProductEditor} />
             <Route path={`${productRoute.detail}/:productId`} component={ProductDetail} />
             <Route component={ErrorPage} />
           </Switch>
