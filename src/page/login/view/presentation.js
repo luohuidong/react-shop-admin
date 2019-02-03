@@ -74,7 +74,7 @@ class LoginPage extends React.PureComponent {
             })(
               <Input
                 prefix={<Icon type="user" className={style.input} />}
-                placeholder="Username"
+                placeholder="admin"
                 onChange={this.userNameChange}
                 ref={this.usernameInputRef}
               />
@@ -88,7 +88,7 @@ class LoginPage extends React.PureComponent {
               <Input
                 prefix={<Icon type="lock" className={style.input} />}
                 type="password"
-                placeholder="Password"
+                placeholder="admin"
                 ref={this.passwordInputRef}
               />
             )}
