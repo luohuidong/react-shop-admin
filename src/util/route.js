@@ -1,15 +1,21 @@
 const productRoute = {
   list: '/product/list',
-  category: '/product/category',
   editor: '/product/editor',
-  detail: '/product/detail'
+  detail: '/product/detail',
+  
 };
 
 const userRoute = {
   list: '/user/list'
 };
 
+const categoryRoute = {
+  list: '/category/list',
+  editor: '/category/editor',
+};
+
 export {
   productRoute,
-  userRoute
+  userRoute,
+  categoryRoute,
 };

@@ -1,15 +1,7 @@
-import { reducer as LoginReducer } from './login/index';
-import { reducer as HomeReducer } from './home/index';
-import { reducer as userReducer } from './user/index';
-import { reducer as productReducer } from './product/index';
-
-const reducer = {
-  login: LoginReducer,
-  home: HomeReducer,
-  ...userReducer,
-  ...productReducer,
-};
+import reducer from './reducer';
+import PageRoute from './route';
 
 export {
-  reducer,
+  PageRoute as default,
+  reducer
 };

@@ -1,4 +1,4 @@
-import { get } from 'util/request';
+import { get, post } from 'util/request';
 
 /**
  * 获取品类子节点
@@ -11,6 +11,29 @@ function requestCategory(parentId) {
   });
 }
 
+/**
+ * 更新品类名称
+ * @param {string} categoryId 
+ * @param {string} categoryName 
+ */
+function requestEditCategoryName(categoryId, categoryName) {
+  const url = '/manage/category/set_category_name.do';
+  return post(url, {
+    categoryId,
+    categoryName
+  });
+}
+
+function requestCreateCategory(parentId, categoryName) {
+  const url = '/manage/category/add_category.do';
+  return post(url, {
+    parentId,
+    categoryName
+  });
+}
+
 export {
-  requestCategory
+  requestCategory,
+  requestEditCategoryName,
+  requestCreateCategory
 };
