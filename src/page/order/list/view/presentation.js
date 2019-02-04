@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Button } from 'antd';
+import { Table } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { orderRoute } from 'util/route';
