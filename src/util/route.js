@@ -14,8 +14,14 @@ const categoryRoute = {
   editor: '/category/editor',
 };
 
+const orderRoute = {
+  list: '/order/list',
+  detail: '/order/detail'
+};
+
 export {
   productRoute,
   userRoute,
   categoryRoute,
+  orderRoute,
 };

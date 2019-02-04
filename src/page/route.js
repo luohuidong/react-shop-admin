@@ -6,7 +6,8 @@ import Home from 'page/home/index.js';
 import ErrorPage from 'page/404/index.js';
 import { Route as UserRoute } from 'page/user/index';
 import { Route as ProductRoute } from 'page/product/index';
-import Category from 'page/category/index';
+import { Route as CategoryRoute } from 'page/category/index';
+import { Route as OrderRoute } from 'page/order';
 
 class PageRoute extends React.Component {
   render() {
@@ -16,7 +17,8 @@ class PageRoute extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path='/user' component={UserRoute} />
           <Route path='/product' component={ProductRoute} />
-          <Route path='/category' component={Category} />
+          <Route path='/category' component={CategoryRoute} />
+          <Route path='/order' component={OrderRoute} />
           <Route component={ErrorPage} />
         </Switch>
       </Layout>
