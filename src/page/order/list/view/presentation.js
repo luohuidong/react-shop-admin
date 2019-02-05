@@ -44,7 +44,7 @@ class ProductList extends React.Component {
       width: 150,
       render: (text, record) => (
         <span>
-          <Link to={`${orderRoute.detail}/${record.id}`}>查看详情</Link>
+          <Link to={`${orderRoute.detail}/${record.orderNo}`}>查看详情</Link>
         </span>
       )
     }];

@@ -11,10 +11,10 @@ class FormDetailCard extends React.PureComponent {
     ));
   }
   render() {
-    const { title, data, showBottom } = this.props;
+    const { title, data, showBottom, style } = this.props;
     
     return (
-      <div>
+      <div style={style}>
         <div className={styles['title']}>{title}</div>
         { this.props.children }
         {
@@ -36,6 +36,7 @@ FormDetailCard.propTypes = {
   data: PropTypes.array.isRequired,
   showBottom: PropTypes.bool.isRequired,
   children: PropTypes.element,
+  style: PropTypes.object,
 };
 
 FormDetailCard.defaultProps = {
