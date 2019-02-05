@@ -2,6 +2,12 @@
 
 这是一个 React、Redux、React Router、Ant Design 电商后台项目。
 
+## Todo
+
+- [ ] 项目引入 GraphQL
+- [ ] 项目引入 Jest
+- [ ] 项目向 TypeScript 迁移
+
 ## 电商后台模块
 
 - [x] 登录
