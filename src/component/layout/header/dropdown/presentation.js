@@ -26,13 +26,6 @@ class DropdownPresentation extends React.PureComponent {
     const menu = (
       <Menu>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item>
           <a target="_blank" onClick={this.handleLogout}>退出登录</a>
         </Menu.Item>
       </Menu>
