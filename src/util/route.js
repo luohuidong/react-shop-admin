@@ -2,7 +2,6 @@ const productRoute = {
   list: '/product/list',
   editor: '/product/editor',
   detail: '/product/detail',
-  
 };
 
 const userRoute = {
