@@ -7,6 +7,7 @@ import RichTextEditor from 'component/rich-text-editor/index';
 import { requestSaveProduct, requestProductDetail } from 'service/product';
 import { productRoute } from 'util/route';
 import CategorySelect from './category-select';
+import PageWrapper from 'component/page-wrapper';
 
 const formItemLayout = {
   labelCol: { span: 7 },
@@ -85,13 +86,31 @@ class ProductList extends React.PureComponent {
     });
   }
 
+  getRouteData = () => {
+    const { productId } = this.props.match.params;
+
+    let routeData = [{
+      key: 'product',
+      text: '商品'
+    }, {
+      key: productRoute.list,
+      link: productRoute.list,
+      text: '商品列表',
+    }, {
+      key: productRoute.editor,
+      text: productId ? '修改商品' : '新增商品'
+    }];
+
+    return routeData;
+  }
+
   render() {
     const { form } = this.props;
     const { getFieldDecorator } = form;
     const { productData } = this.state;
 
     return (
-      <div>
+      <PageWrapper routeData={this.getRouteData()}>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item {...formItemLayout} label="商品名称">
             {getFieldDecorator('name', {
@@ -166,7 +185,7 @@ class ProductList extends React.PureComponent {
             </Button>
           </Form.Item>
         </Form>
-      </div>
+      </PageWrapper>
     );
   }
 }

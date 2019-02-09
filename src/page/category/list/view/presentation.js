@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { categoryRoute } from 'util/route';
 import EditorModal from './edit-modal';
 import CreateModal from './create-modal';
+import PageWrapper from 'component/page-wrapper';
 
 class CategoryList extends React.Component {
   componentDidMount() {
@@ -24,6 +25,30 @@ class CategoryList extends React.Component {
     if (categoryId !== prevCategoryId) {
       this.props.getCategoryListData(categoryId);
     }
+  }
+
+  getColumn = () => {
+
+  }
+
+  getRouteData = (categoryId) => {
+    let routeData = [{
+      key: categoryRoute.list,
+      text: '一级品类管理'
+    }];
+
+    if (categoryId && categoryId !== 0) {
+      routeData = [{
+        key: categoryRoute.list,
+        link: categoryRoute.list,
+        text: '一级品类管理'
+      }, {
+        key: `${categoryRoute.list}/${categoryId}`,
+        text: '二级品类管理'
+      }];
+    }
+
+    return routeData;
   }
 
   render() {
@@ -64,8 +89,10 @@ class CategoryList extends React.Component {
       rowKey: 'id',
     };
 
+    const routeData = this.getRouteData(categoryId, categoryListData);
+    
     return (
-      <div>
+      <PageWrapper routeData={routeData}>
         <div style={{ marginBottom: 30 }}>
           <Button type='primary' onClick={this.props.handleOpenCreateModal}>新增</Button>
         </div>
@@ -82,7 +109,7 @@ class CategoryList extends React.Component {
           handleCancelCreate={this.props.handleCancelCreate}
           handleCreateCategory={this.props.handleCreateCategory}
         />
-      </div>
+      </PageWrapper>
     );
   }
 }

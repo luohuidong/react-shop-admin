@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
 
+import { productRoute } from 'util/route';
 import { requestProductDetail } from 'service/product';
 import { requestCategory } from 'service/category';
 import FormDetailCard from 'component/form-detail-card/';
 import RichTextDisplay from 'component/rich-text-display/';
-import Breadcrumb from 'component/breadcrumb/';
+import PageWrapper from 'component/page-wrapper';
 
 class ProductDetail extends React.PureComponent {
   state = {
@@ -123,9 +124,20 @@ class ProductDetail extends React.PureComponent {
     const { productData, levelOneCategory, levelTwoCategory } = this.state;
     const productDetail = this.getProductDetail(productData, levelOneCategory, levelTwoCategory);
 
+    const routeData = [{
+      key: 'product',
+      text: '商品'
+    }, {
+      key: productRoute.list,
+      link: productRoute.list,
+      text: '商品列表'
+    }, {
+      key: productRoute.detail,
+      text: '商品详情'
+    }];
+
     return (
-      <div>
-        <Breadcrumb />
+      <PageWrapper routeData={routeData}>
         <FormDetailCard
           title='商品基本信息'
           data={productDetail}
@@ -135,7 +147,7 @@ class ProductDetail extends React.PureComponent {
             <RichTextDisplay data={productData.detail} />
           </FormDetailCard>
         </div>
-      </div>
+      </PageWrapper>
     );
   }
 }

@@ -16,12 +16,25 @@ class StrengtheningBreadcrumb extends React.PureComponent {
     ));
   }
 
+  getRouteData = () => {
+    const newRouteData = [
+      {
+        key: '/',
+        link: '/',
+        text: '首页'
+      },
+      ...this.props.routeData,
+    ];
+
+    return newRouteData;
+  }
+
   render() {
-    const { routeData } = this.props;
+    const routeData = this.getRouteData();
     return (
       <React.Fragment>
         {
-          routeData.length !== 0 &&
+          routeData.length > 1 &&
           <React.Fragment>
             <Breadcrumb>
               {this.getBreadcrumbItem(routeData)}
