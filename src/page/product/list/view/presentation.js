@@ -4,7 +4,8 @@ import { Table, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { productRoute } from 'util/route';
-import SearchForm from './search-form'; 
+import PageWrapper from 'component/page-wrapper';
+import SearchForm from './search-form';
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -28,11 +29,11 @@ class ProductList extends React.Component {
   }
 
   render() {
-    
-    const { 
-      listType, productListData, pageSize, pageNum, total, productName 
+
+    const {
+      listType, productListData, pageSize, pageNum, total, productName
     } = this.props.productList;
-    
+
     const productStyle = {
       display: 'flex',
       justifyContent: 'space-between',
@@ -95,11 +96,19 @@ class ProductList extends React.Component {
       }
     };
 
+    const routeData = [{
+      key: '/product',
+      text: '商品'
+    }, {
+      key: productRoute.list,
+      text: '商品列表'
+    }];
+
     return (
-      <div>
-        <SearchForm 
-          getProductList={this.props.getProductList} 
-          pageSize={pageSize} 
+      <PageWrapper routeData={routeData}>
+        <SearchForm
+          getProductList={this.props.getProductList}
+          pageSize={pageSize}
           pageNum={pageNum}
         />
         <div style={{ marginBottom: 30 }}>
@@ -108,7 +117,7 @@ class ProductList extends React.Component {
           </Link>
         </div>
         <Table {...tableProps} />
-      </div>
+      </PageWrapper>
     );
   }
 }

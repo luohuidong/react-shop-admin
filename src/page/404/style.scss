@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 80%;
+  min-height: 500px;
+
+  >div:first-child {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+    height: 360px;
+    padding-right: 150px;
+  }
+
+  >div:last-child {
+    flex: 2;
+
+    h1 {
+      font-size: 72px;
+      color: #434e59;
+    }
+
+    p {
+      font-size: 20px;
+      color: rgba(0,0,0, 0.45);
+    }
+  }
+}

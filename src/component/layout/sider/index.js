@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 
+import { LocationContext } from 'util/context.js';
 import SiderMenu from './sider_menu.js';
 
 class Sider extends React.PureComponent {
@@ -25,7 +26,9 @@ class Sider extends React.PureComponent {
           margin: '16px',
         }}/>
 
-        <SiderMenu />
+        <LocationContext.Consumer>
+          {value => <SiderMenu location={value} />}
+        </LocationContext.Consumer>
       </Layout.Sider>
     );
   }

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Icon, Input, Button, message } from 'antd';
 
-import style from './style.module.css';
+import style from './style.scss';
 import { requestUserLogin } from 'service/user-service.js';
 import { saveUserDataStorage, getUserDataStorage } from 'util/storege';
 
@@ -65,7 +65,7 @@ class LoginPage extends React.PureComponent {
     return (
       <div className={style.container}>
 
-        <Form onSubmit={this.handleSubmit} className={style.form}>
+        <Form onSubmit={this.handleSubmit} className='form-container'>
 
           <FormItem>
             {getFieldDecorator('userName', {
@@ -73,7 +73,8 @@ class LoginPage extends React.PureComponent {
               initialValue: userData ? userData.username : ''
             })(
               <Input
-                prefix={<Icon type="user" className={style.input} />}
+                className='form-input' 
+                prefix={<Icon type="user" />}
                 placeholder="admin"
                 onChange={this.userNameChange}
                 ref={this.usernameInputRef}
@@ -86,7 +87,8 @@ class LoginPage extends React.PureComponent {
               rules: [{ required: true, message: '请输入密码!' }],
             })(
               <Input
-                prefix={<Icon type="lock" className={style.input} />}
+                className='form-input'
+                prefix={<Icon type="lock" />}
                 type="password"
                 placeholder="admin"
                 ref={this.passwordInputRef}
@@ -97,7 +99,7 @@ class LoginPage extends React.PureComponent {
           <Button
             type="primary"
             htmlType="submit"
-            className={style.button}
+            className='form-button'
           >
             登录
           </Button>

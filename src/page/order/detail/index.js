@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { message, Table } from 'antd';
 
+import { orderRoute } from 'util/route';
 import { requestOrderDetail } from 'service/order';
+
+import PageWrapper from 'component/page-wrapper';
 import FormDetailCard from 'component/form-detail-card/';
 
 class OrderDetail extends React.PureComponent {
@@ -133,8 +136,21 @@ class OrderDetail extends React.PureComponent {
     const orderDetailData = this.getOrderDisplayData(orderData);
     const receiverData = this.getReceiverDetail(orderData);
 
+    const routeData = [{
+      key: '/order',
+      text: '订单'
+    }, {
+      key: orderRoute.list,
+      link: orderRoute.list,
+      text: '订单管理'
+    }, {
+      key: orderRoute.detail,
+      text: '订单详情'
+    }];
+
+
     return (
-      <div>
+      <PageWrapper routeData={routeData}>
         <FormDetailCard 
           title='订单基本信息'
           data={orderDetailData}
@@ -160,7 +176,7 @@ class OrderDetail extends React.PureComponent {
             }}
           />
         </FormDetailCard>
-      </div>
+      </PageWrapper>
     );
   }
 }

@@ -40,6 +40,7 @@
     "antd": "^3.12.1",
     "axios": "^0.18.0",
     "braft-editor": "^2.2.5",
+    "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

@@ -9,15 +9,11 @@ import OrderDetail from './detail/index.js';
 class ProductRoute extends React.Component {
   render() {
     return (
-      <div>
-        <div style={{ padding: 50, backgroundColor: 'white' }}>
-          <Switch>
-            <Route exact path={orderRoute.list} component={OrderList} />
-            <Route path={`${orderRoute.detail}/:orderId`} component={OrderDetail} />
-            <Route component={ErrorPage} />
-          </Switch>
-        </div>
-      </div>
+      <Switch>
+        <Route exact path={orderRoute.list} component={OrderList} />
+        <Route path={`${orderRoute.detail}/:orderId`} component={OrderDetail} />
+        <Route component={ErrorPage} />
+      </Switch>
     );
   }
 }

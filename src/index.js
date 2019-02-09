@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store.js';
 
 import 'antd/dist/antd.css';
-import './index.css';
+import './index.scss';
 import App from './app.js';
 
 ReactDOM.render(

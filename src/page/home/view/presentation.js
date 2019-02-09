@@ -3,7 +3,8 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 
-import { productRoute, userRoute, orderRoute } from 'util/route';
+import { productRoute, userRoute, orderRoute } from 'util/route.js';
+import PageWrapper from 'component/page-wrapper';
 import Card from './card.js';
 
 class Home extends React.PureComponent {
@@ -18,7 +19,7 @@ class Home extends React.PureComponent {
     const { userCount, orderCount, productCount } = statisticData;
 
     return (
-      <div>
+      <PageWrapper showBackgroundColor={false}>
         <Row gutter={40}>
           <Col span={8}>
             <Card title='用户总数' num={userCount} linkTo={userRoute.list} />
@@ -30,7 +31,7 @@ class Home extends React.PureComponent {
             <Card title='订单数' num={orderCount} linkTo={orderRoute.list} />
           </Col>
         </Row>
-      </div>
+      </PageWrapper>
     );
   }
 }

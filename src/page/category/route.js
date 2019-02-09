@@ -9,12 +9,10 @@ class ProductRoute extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ padding: 50, backgroundColor: 'white' }}>
-          <Switch>
-            <Route path={`${categoryRoute.list}/:categoryId?`} component={CategoryList} />
-            <Route component={ErrorPage} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route path={`${categoryRoute.list}/:categoryId?`} component={CategoryList} />
+          <Route component={ErrorPage} />
+        </Switch>
       </div>
     );
   }

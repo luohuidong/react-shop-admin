@@ -45,39 +45,54 @@
   - [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)：让 ESlint 识别 React 语法。
   - [babel-eslint](https://github.com/babel/babel-eslint)：让 ESlint 识别最新的 ES 语法。
 
-- 项目使用 webpack 打包：
+- [classnames](https://github.com/JedWatson/classnames)：简单易用的 className 组合工具，实现了类似于 vue 中 class 绑定的对象语法与数组语法的功能。
 
-  使用 webpack 最基础的两个 packages：
+## 项目使用 webpack 打包依赖：
 
-  - [webpack](https://webpack.js.org/)
-  - webpack-cli
+webpack packages 这部分单独写主要是因为 webpack 使用的 packages 比较多。
 
-  另外三个 packages 也是少不了的了：
+webpack 中最最最基础的两个 packages：
 
-  - [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md)：自动帮我们生成 index.html 文件，并且在代码中自动帮我们加入所有的资源。
-  - [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)：每次打包之前，都会清空一下老的打包文件。
-  - webpack-dev-server：提供一个简单的服务器，而且代码有修改之后，还会自动刷新。
+- [webpack](https://webpack.js.org/)
+- webpack-cli
 
-  使用下面的 package 能提取生产环境和开发环境相同的 webpack 配置，减少 webpack 配置代码的重复。
+---
 
-  - webpack-merge
-  
-  webpack 处理样式使用的 packages：
+另外三个 packages 也是少不了的了：
 
-  - css-loader
-  - style-loader
-  - sass-loader
-  - node-sass
+- [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md)：自动帮我们生成 index.html 文件，并且在代码中自动帮我们加入所有的资源。
+- [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)：每次打包之前，都会清空一下老的打包文件。
+- webpack-dev-server：提供一个简单的服务器，而且代码有修改之后，还会自动刷新。
 
-  由于项目中会用到一些新的 ESMAScript 特性以及 JSX ，需要用到 babel 来处理，因此会用到下面的 packages。
-  
-  - [babel-loader](https://webpack.js.org/loaders/babel-loader/)
-  - [@babel/core](https://babeljs.io/docs/en/babel-core)
-  - [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)
-  - [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react)
-  - [@babel/plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
-  - [@babel/plugin-transform-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions)
-  - [@babel/plugin-transform-async-to-generator](https://babeljs.io/docs/en/babel-plugin-transform-async-to-generator)
-  - [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)
+---
 
-  项目中使用了 [React Hot Loader](https://github.com/gaearon/react-hot-loader) 来配置热加载
+使用下面的 package 能提取生产环境和开发环境相同的 webpack 配置，减少 webpack 配置代码的重复。
+
+- webpack-merge
+
+---
+
+webpack 处理样式使用的 packages：
+
+- css-loader
+- style-loader
+- sass-loader
+- node-sass
+
+---
+
+由于项目中会用到一些新的 ESMAScript 特性以及 JSX ，需要用到 babel 来处理，因此会用到下面的 packages。
+
+- [babel-loader](https://webpack.js.org/loaders/babel-loader/)
+- [@babel/core](https://babeljs.io/docs/en/babel-core)
+- [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)
+- [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react)
+- [@babel/plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
+- [@babel/plugin-transform-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions)
+- [@babel/plugin-transform-async-to-generator](https://babeljs.io/docs/en/babel-plugin-transform-async-to-generator)
+- [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)
+
+---
+
+- [React Hot Loader](https://github.com/gaearon/react-hot-loader)：用于 React 项目的热加载
+- mini-css-extract-plugin：打包时可将 css 提取到单独的文件。

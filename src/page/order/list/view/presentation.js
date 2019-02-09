@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import { Link } from 'react-router-dom';
 
+import PageWrapper from 'component/page-wrapper';
 import { orderRoute } from 'util/route';
 import SearchForm from './search-form';
 
@@ -62,14 +63,22 @@ class ProductList extends React.Component {
       }
     };
 
+    const routeData = [{
+      key: '/order',
+      text: '订单'
+    }, {
+      key: orderRoute.list,
+      text: '订单管理'
+    }];
+
     return (
-      <div>
+      <PageWrapper routeData={routeData}>
         <SearchForm
           handleOrderSearch={this.props.handleOrderSearch}
           getOrderList={this.props.getOrderList}
         />
         <Table {...tableProps} />
-      </div>
+      </PageWrapper>
     );
   }
 }
