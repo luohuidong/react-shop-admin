@@ -10,17 +10,14 @@ import ProductDetail from './detail/index';
 class ProductRoute extends React.Component {
   render() {
     return (
-      <div>
-        <div style={{ padding: 50, backgroundColor: 'white' }}>
-          <Switch>
-            <Route exact path={productRoute.list} component={ProductList} />
-            <Route path={`${productRoute.editor}/:productId?`} component={ProductEditor} />
-            <Route path={`${productRoute.detail}/:productId`} component={ProductDetail} />
-            <Route component={ErrorPage} />
-          </Switch>
-
-        </div>
-      </div>
+      <React.Fragment>
+        <Switch>
+          <Route exact path={productRoute.list} component={ProductList} />
+          <Route path={`${productRoute.editor}/:productId?`} component={ProductEditor} />
+          <Route path={`${productRoute.detail}/:productId`} component={ProductDetail} />
+          <Route component={ErrorPage} />
+        </Switch>
+      </React.Fragment>
     );
   }
 }
