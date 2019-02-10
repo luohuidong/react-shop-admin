@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
 
+import { userRoute } from 'util/route.js';
+import PageWrapper from 'component/page-wrapper';
+
 class UserList extends React.Component {
   componentDidMount() {
     document.title = '用户列表';
@@ -45,10 +48,15 @@ class UserList extends React.Component {
       }
     };
 
+    const routeData = [{
+      key: userRoute.list,
+      text: '用户列表'
+    }];
+
     return (
-      <div style={{ padding: 50, backgroundColor: 'white' }}>
+      <PageWrapper routeData={routeData}>
         <Table {...tableProps} />
-      </div>
+      </PageWrapper>
     );
   }
 }

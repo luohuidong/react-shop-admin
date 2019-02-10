@@ -25,8 +25,8 @@ class App extends React.Component {
   }
 
   handleRender = ({ location }) => {
-    // const { userData } = this.state;
-    const userData = getUserDataStorage();
+    const { userData } = this.state;
+    // const userData = getUserDataStorage();
     const keys = Object.keys(userData);
     return keys.length === 0 ? <Login /> : <PageRoute location={location} />;
   }
