@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Menu, Dropdown, Avatar, message } from 'antd';
 
-import { removeUserDataStorage } from 'util/storege';
+import { getUserDataStorage } from 'util/storege';
 import { userLogout } from 'service/user-service.js';
 
 class DropdownPresentation extends React.PureComponent {
@@ -14,8 +13,6 @@ class DropdownPresentation extends React.PureComponent {
     e.preventDefault();
     try {
       const result = await userLogout();
-      removeUserDataStorage();
-      this.props.doLogOut();
       message.success(result);
     } catch (error) {
       message.error(error);
@@ -31,7 +28,7 @@ class DropdownPresentation extends React.PureComponent {
       </Menu>
     );
 
-    const { userData } = this.props;
+    const userData = getUserDataStorage();
 
     return (
       <Dropdown overlay={menu}>
@@ -47,10 +44,5 @@ class DropdownPresentation extends React.PureComponent {
     );
   }
 }
-
-DropdownPresentation.propTypes = {
-  doLogOut: PropTypes.func.isRequired,
-  userData: PropTypes.object.isRequired,
-};
 
 export default DropdownPresentation;
