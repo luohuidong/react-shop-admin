@@ -1,4 +1,6 @@
 import { get, post } from 'util/request';
+import { saveUserDataStorage, removeUserDataStorage } from 'util/storege';
+import { emitUserDataEvent } from 'util/custom-event';
 
 /**
  * 用户登录
@@ -11,7 +13,11 @@ function requestUserLogin(username, password) {
     username,
     password,
   };
-  return post(url, data);
+  return post(url, data).then(userData => {
+    saveUserDataStorage(userData);
+    emitUserDataEvent('login');
+    return userData;
+  });
 }
 
 /**
@@ -19,7 +25,11 @@ function requestUserLogin(username, password) {
  */
 function userLogout() {
   const url = '/user/logout.do';
-  return post(url).then(() => '退出成功');
+  return post(url).then(() => {
+    removeUserDataStorage();
+    emitUserDataEvent('logout');
+    return '退出成功';
+  });
 }
 
 /**

@@ -1,17 +1,18 @@
+
 /**
  * 在本地存储内容
  * @param {string} key 键名
- * @param {*} data 值
+ * @param {any} data 值
  */
 function setStorage(key, data) {
   const dataType = typeof data;
 
   if (dataType === 'object') {
     // json 对象处理
-    window.sessionStorage.setItem(key, JSON.stringify(data));
+    sessionStorage.setItem(key, JSON.stringify(data));
   } else if (['number', 'string', 'boolean'].includes(dataType)) {
     // 基础类型
-    window.sessionStorage.setItem(key, data);
+    sessionStorage.setItem(key, data);
   } else {
     alert('该类型不能用于本地存储');
   }
@@ -22,7 +23,7 @@ function setStorage(key, data) {
  * @param {string} key 
  */
 function getStorage(key) {
-  const data = window.sessionStorage.getItem(key);
+  const data = sessionStorage.getItem(key);
   
   if (data) {
     return JSON.parse(data);
@@ -32,7 +33,7 @@ function getStorage(key) {
 }
 
 function removeStorage(key) {
-  window.sessionStorage.removeItem(key);
+  sessionStorage.removeItem(key);
 }
 
 /**

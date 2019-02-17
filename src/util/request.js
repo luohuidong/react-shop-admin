@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-import store from '../store.js';
-import { doLogOut } from '../page/login/actions';
+import { removeUserDataStorage } from './storege';
 
 const request = (config) => {
   const { method, url, data, params } = config;
@@ -20,7 +19,7 @@ const request = (config) => {
       return data;
     } else if (status === 10) {
       // status 为 10 的时候，表示用户未登录。
-      store.dispatch(doLogOut());
+      removeUserDataStorage();
       return Promise.reject(msg);
     } else {
       return Promise.reject(msg);
