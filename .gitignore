@@ -3,6 +3,7 @@
 
 # production
 /dist
+/dll
 
 # misc
 .DS_Store

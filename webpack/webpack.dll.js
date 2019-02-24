@@ -4,24 +4,32 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     // 依赖的库数组
-    vendor: [
+    library: [
+      '@babel/polyfill',
+      'antd',
+      'axios',
+      'braft-editor',
+      'classnames',
       'prop-types',
       'react',
       'react-dom',
+      'react-loadable',
+      'react-redux',
       'react-router-dom',
-      'antd'
+      'redux',
+      'redux-thunk',
     ]
   },
   output: {
-    path: path.join(__dirname, '../dist'),
     filename: '[name].js',
-    library: '[name]_[hash]',
+    path: path.join(__dirname, '../dll'),
+    library: '[name]',
   },
   plugins: [
     new webpack.DllPlugin({
-      name: '[name]_[hash]',
-      path: path.join(__dirname, '../dist', '[name]-manifest.json'),
-      context: __dirname
+      context: __dirname,
+      path: path.join(__dirname, '../dll/manifest.json'),
+      name: '[name]',
     }),
   ],
 };
