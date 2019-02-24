@@ -19,11 +19,11 @@ else
     exit
 fi
 
-
 if [ $? -eq 0 ]
     then
         echo '清除旧静态文件成功'
-        cp -r build/* /www/react-shop-admin/
+        cp -r dll /www/react-shop-admin/
+        cp -r dist/* /www/react-shop-admin/
 else 
     echo '清除旧文件失败'
     exit
