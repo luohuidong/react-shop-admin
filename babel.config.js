@@ -6,6 +6,7 @@ module.exports = function (api) {
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-transform-arrow-functions',
     '@babel/plugin-transform-async-to-generator',
+    '@babel/plugin-syntax-dynamic-import',
     'react-hot-loader/babel'
   ];
 

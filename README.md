@@ -149,3 +149,22 @@ React、Redux、React-Redux、React Router、Ant Design 简易电商后台项目
     - [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)
   - [React Hot Loader](https://github.com/gaearon/react-hot-loader)：用于 React 项目的热加载
   - mini-css-extract-plugin：打包时可将 css 提取到单独的文件。
+
+## 所遇到的问题
+
+- [x] 除了根路径，其他路径的页面不能通过输入 URL 进入。
+- [x] 无法监听 sessionStorage 的变化
+- [ ] 页面卸载时取消异步请求
+
+## 性能提升
+
+对于项目的性能提升，主要是参考 React 官网 [Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html) 以及 Webpack 官网 [Build Performance](https://webpack.js.org/guides/build-performance), [Code Splitting](https://webpack.js.org/guides/lazy-loading), [Lazy Loading](https://webpack.js.org/guides/lazy-loading)。根据这些指南的提示，我们就可以按照它们的提示，一条一条地对项目进行性能优化。
+
+当前项目主要存在的问题是第一次打开登陆页面的时候太慢了，严重影响了体验。主要的原因就是打包的文件太大了，在打包没有优化的时候，就相当于用户无论使用哪个页面，都必须等待整个网站的所有代码都下载下来之后页面才展示。其实这个是没有必要的，只需要用户使用哪个页面，就加载哪个页面就好。
+
+由于打包文件太大，因此首先从 Webpack 打包优化开始。
+
+应对上面所说的情况，其实很容易就能想到就是让打包文件变得更小，或者让打包文件拆分成一个个小的文件，以及按需加载。因此可以参考 [Code Splitting](https://webpack.js.org/guides/code-splitting/) 以及 [Lazy Loading](https://webpack.js.org/guides/lazy-loading)。
+
+按照 [Lazy Loading](https://webpack.js.org/guides/lazy-loading) 中的提示，如果项目中使用的是 React，则可以参照  React Router 官网 [Code Splitting](https://reacttraining.com/react-router/web/guides/code-splitting) 将页面更改为按需加载。
+
