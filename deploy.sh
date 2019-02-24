@@ -1,12 +1,22 @@
 #!/bin/bash
+rm -rf dist
 git pull
 
 if [ $? -eq 0 ]
     then
         echo '已获取最新的代码'
-        npm run build
+        npm run dll
 else
     echo '获取最新代码失败'
+    exit
+fi
+
+if [ $? -eq 0 ]
+    then
+        echo '生成 dll 文件成功'
+        npm run build
+else
+    echo '生成 dll 文件失败'
     exit
 fi
 
