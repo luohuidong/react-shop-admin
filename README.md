@@ -156,15 +156,28 @@ React、Redux、React-Redux、React Router、Ant Design 简易电商后台项目
 - [x] 无法监听 sessionStorage 的变化
 - [ ] 页面卸载时取消异步请求
 
-## 性能提升
-
-对于项目的性能提升，主要是参考 React 官网 [Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html) 以及 Webpack 官网 [Build Performance](https://webpack.js.org/guides/build-performance), [Code Splitting](https://webpack.js.org/guides/lazy-loading), [Lazy Loading](https://webpack.js.org/guides/lazy-loading)。根据这些指南的提示，我们就可以按照它们的提示，一条一条地对项目进行性能优化。
+## 页面加载优化
 
 当前项目主要存在的问题是第一次打开登陆页面的时候太慢了，严重影响了体验。主要的原因就是打包的文件太大了，在打包没有优化的时候，就相当于用户无论使用哪个页面，都必须等待整个网站的所有代码都下载下来之后页面才展示。其实这个是没有必要的，只需要用户使用哪个页面，就加载哪个页面就好。
 
-由于打包文件太大，因此首先从 Webpack 打包优化开始。
+### 按需加载
 
-应对上面所说的情况，其实很容易就能想到就是让打包文件变得更小，或者让打包文件拆分成一个个小的文件，以及按需加载。因此可以参考 [Code Splitting](https://webpack.js.org/guides/code-splitting/) 以及 [Lazy Loading](https://webpack.js.org/guides/lazy-loading)。
+应对上面所说的情况，其实很容易就能想到就是让打包文件变得更小，或者让打包文件拆分成一个个小的文件。因此可以参考 [Code Splitting][Code Splitting] 以及 [Lazy Loading][Lazy Loading]。
 
-按照 [Lazy Loading](https://webpack.js.org/guides/lazy-loading) 中的提示，如果项目中使用的是 React，则可以参照  React Router 官网 [Code Splitting](https://reacttraining.com/react-router/web/guides/code-splitting) 将页面更改为按需加载。
+按照 [Lazy Loading][Lazy Loading] 中的提示，如果项目中使用的是 React，则可以参照  React Router 官网 [Code Splitting](https://reacttraining.com/react-router/web/guides/code-splitting) 将页面更改为按需加载。
 
+处理完页面的按需加载之后，在处理一下项目所依赖的 packages，[Code Splitting][Code Splitting] Bundle Analysis 这一小节提供了好几种打包分析工具。这里使用比较直观的 [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+
+以下是使用 Webpack Bundle Analyzer 分析的结果：
+
+![image](https://user-images.githubusercontent.com/26449894/53296189-3aafa800-3845-11e9-9c60-d139c738d415.png)
+
+其中我们看到了 Ant Design 占的体积比较大，也就是说，项目把整个 Ant Design 都引入进去了，即便你没使用 Ant Design 中的某些组件。到 Ant Design 官网，其中 [Ant Design of React](https://ant.design/docs/react/introduce-cn#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD) 这篇文章中提供了按需加载的方式。根据这个方式我们优化一下项目中的 Ant Design。
+
+接下来我们利用 [UglifyjsWebpackPlugin](https://webpack.js.org/plugins/uglifyjs-webpack-plugin/) 对 JS 代码进行压缩。
+
+另外我们将 CSS 抽离出来，可以使用 [MiniCssExtractPlugin](https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production)，需要注意的是，抽离出来的 CSS 是没有经过压缩的，因此需要 [Optimize CSS Assets Webpack Plugin](https://github.com/NMFR/optimize-css-assets-webpack-plugin) 对 CSS 文件进行压缩。
+
+### GZip 压缩
+
+Nginx 上配置对 JavaScript 和 CSS 文件进行 GZip 压缩即可。进行 GZip 压缩能大幅度压缩加载文件的大小，从而加快网页加载速度。首页原本 20 多秒的加载速度，用了 GZip 压缩之后，加载速度变成 4 秒钟，就是这么丧心病狂.
