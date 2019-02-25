@@ -2,16 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { message, Select, Form } from 'antd';
 
+import { CancelablePromise } from 'util/cancelable-promise';
 import { requestCategory } from 'service/category';
 
 class CategorySelect extends React.PureComponent {
   state = {
     levelOneCategoryDatas: [],
     levelTwoCategoryDatas: [],
-  }
+  };
+
+  cancelableRequests = []
 
   componentDidMount() {
     this.getLevelOneCategory();
+  }
+
+  componentWillUnmount() {
+    for (let request of this.cancelableRequests) {
+      request.cancel();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -26,10 +35,15 @@ class CategorySelect extends React.PureComponent {
 
   getLevelOneCategory = async () => {
     try {
-      const data = await requestCategory(0);
+      const cancelableRequest = new CancelablePromise(requestCategory(0));
+      this.cancelableRequests.push(cancelableRequest);
+
+      const data = await cancelableRequest.promise;
       this.setState({ levelOneCategoryDatas: data });
     } catch (error) {
-      message.error(error || '获取商品一级分类失败');
+      if (typeof error === 'string') {
+        message.error(error || '获取商品一级分类失败');
+      }
     }
   }
 
@@ -39,10 +53,15 @@ class CategorySelect extends React.PureComponent {
    */
   getLevelTwoCategory = async (parentId) => {
     try {
-      const data = await requestCategory(parentId);
+      const cancelableRequest = new CancelablePromise(requestCategory(parentId));
+      this.cancelableRequests.push(cancelableRequest);
+
+      const data = await cancelableRequest.promise;
       this.setState({ levelTwoCategoryDatas: data });
     } catch (error) {
-      message.error(error || '获取商品二级分类失败');
+      if (typeof error === 'string') {
+        message.error(error || '获取商品二级分类失败');
+      }
     }
   }
 
