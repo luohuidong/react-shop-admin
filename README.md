@@ -154,7 +154,7 @@ React、Redux、React-Redux、React Router、Ant Design 简易电商后台项目
 
 - [x] 除了根路径，其他路径的页面不能通过输入 URL 进入。
 - [x] 无法监听 sessionStorage 的变化
-- [ ] 页面卸载时取消异步请求
+- [x] 页面卸载时取消异步请求
 
 ## 页面加载优化
 
