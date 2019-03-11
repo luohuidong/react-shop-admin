@@ -73,7 +73,7 @@ class LoginPage extends React.PureComponent {
               <Input
                 className='form-input' 
                 prefix={<Icon type="user" />}
-                placeholder="admin"
+                placeholder="账号为 admin"
                 onChange={this.userNameChange}
                 ref={this.usernameInputRef}
               />
@@ -88,7 +88,7 @@ class LoginPage extends React.PureComponent {
                 className='form-input'
                 prefix={<Icon type="lock" />}
                 type="password"
-                placeholder="admin"
+                placeholder="密码为 admin"
                 ref={this.passwordInputRef}
               />
             )}
